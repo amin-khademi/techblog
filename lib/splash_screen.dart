@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:techblog/gen/assets.gen.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/main_screen.dart';
 import 'package:techblog/my_colros.dart';
 
@@ -16,9 +14,9 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 4)).then((value) {
+    Future.delayed(const Duration(seconds: 4)).then((value) {
       Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (context) => MainScreen(),));
+          .pushReplacement(MaterialPageRoute(builder: (context) => const MainScreen(),));
     });
     super.initState();
   }
@@ -31,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Center(child: Assets.img.a1.image(height: 64)),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             const SpinKitFadingCube(

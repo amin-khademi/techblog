@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -9,7 +7,7 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        children: const[
           Center(child: Text("main_screen"))
         ],
       ),
