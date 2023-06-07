@@ -32,27 +32,43 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           textTheme: TextTheme(
-              titleMedium: defaultTextStyle.copyWith(
-                fontSize: 14,
-                // color: LightThemeColor.secondaryTextColor,
-              ),
-              labelLarge: defaultTextStyle.apply(
-                  // color: LightThemeColor.secondaryTextColor
-                  ),
-              bodyMedium: defaultTextStyle,
-              titleLarge: defaultTextStyle.copyWith(
-                  fontWeight: FontWeight.bold, fontSize: 15),
-              bodySmall: defaultTextStyle),
-          // This is the theme of your application.
-          //
-          // Try running your application with "flutter run". You'll see the
-          // application has a blue toolbar. Then, without quitting the app, try
-          // changing the primarySwatch below to Colors.green and then invoke
-          // "hot reload" (press "r" in the console where you ran "flutter run",
-          // or simply save your changes to "hot reload" in a Flutter IDE).
-          // Notice that the counter didn't reset back to zero; the application
-          // is not restarted.
-          primarySwatch: Colors.blue,
+              displayLarge: TextStyle(
+                  //? headline1
+                  fontFamily: defaultTextStyle.fontFamily,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                  color: SolidColor.posterTitle),
+              displayMedium: TextStyle(
+                  //? headline2
+                  fontFamily: defaultTextStyle.fontFamily,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w300,
+                  color: SolidColor.posterSubTitle),
+                  displaySmall: TextStyle(
+                  //? headline3
+                  fontFamily: defaultTextStyle.fontFamily,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w300,
+                  color: const Color.fromARGB(255, 53, 53, 53)),
+                  headlineMedium: TextStyle(
+                  //? headline4
+                  fontFamily: defaultTextStyle.fontFamily,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w300,
+                  color: SolidColor.posterSubTitle),
+                  bodyLarge:TextStyle(
+                  //? bodytext1
+                  fontFamily: defaultTextStyle.fontFamily,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w700,
+                  color: SolidColor.posterSubTitle),
+                  titleMedium: TextStyle(
+                  //? subtitle1
+                  fontFamily: defaultTextStyle.fontFamily,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w300,
+                  color: SolidColor.posterSubTitle) ),
+          
         ),
         home: const SplashScreen());
   }
