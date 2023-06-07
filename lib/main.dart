@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:techblog/my_colros.dart';
 import 'package:techblog/splash_screen.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: SolidColor.statusColor,
+      statusBarIconBrightness: Brightness.dark,
+      systemNavigationBarColor: SolidColor.navigationColor));
   runApp(const MyApp());
 }
 
@@ -14,42 +20,40 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     const defaultTextStyle = TextStyle(fontFamily: "IranYekan");
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('fa'), // farsi
-      ],
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        textTheme: TextTheme(
-            titleMedium: defaultTextStyle.copyWith(
-              fontSize: 14,
-              // color: LightThemeColor.secondaryTextColor,
-            ),
-            labelLarge: defaultTextStyle.apply(
-                // color: LightThemeColor.secondaryTextColor
-                ),
-            bodyMedium: defaultTextStyle,
-            titleLarge: defaultTextStyle.copyWith(
-                fontWeight: FontWeight.bold, fontSize: 15),
-            bodySmall: defaultTextStyle),
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home:const SplashScreen() 
-    );
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('fa'), // farsi
+        ],
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          textTheme: TextTheme(
+              titleMedium: defaultTextStyle.copyWith(
+                fontSize: 14,
+                // color: LightThemeColor.secondaryTextColor,
+              ),
+              labelLarge: defaultTextStyle.apply(
+                  // color: LightThemeColor.secondaryTextColor
+                  ),
+              bodyMedium: defaultTextStyle,
+              titleLarge: defaultTextStyle.copyWith(
+                  fontWeight: FontWeight.bold, fontSize: 15),
+              bodySmall: defaultTextStyle),
+          // This is the theme of your application.
+          //
+          // Try running your application with "flutter run". You'll see the
+          // application has a blue toolbar. Then, without quitting the app, try
+          // changing the primarySwatch below to Colors.green and then invoke
+          // "hot reload" (press "r" in the console where you ran "flutter run",
+          // or simply save your changes to "hot reload" in a Flutter IDE).
+          // Notice that the counter didn't reset back to zero; the application
+          // is not restarted.
+          primarySwatch: Colors.blue,
+        ),
+        home: const SplashScreen());
   }
 }
-

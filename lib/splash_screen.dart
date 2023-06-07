@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:techblog/gen/assets.gen.dart';
@@ -14,9 +15,9 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 4)).then((value) {
+    Future.delayed(const Duration(seconds: 1)).then((value) {
       Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (context) => const MainScreen(),));
+          .pushReplacement(CupertinoPageRoute(builder: (context) => const MainScreen(),));
     });
     super.initState();
   }
