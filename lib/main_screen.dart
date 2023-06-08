@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:techblog/gen/assets.gen.dart';
+import 'package:techblog/models/fake_data.dart';
 import 'package:techblog/my_colros.dart';
 
 class MainScreen extends StatelessWidget {
@@ -9,6 +10,7 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     var themeData = Theme.of(context).textTheme;
+    double marginBody = size.width / 10;
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -53,26 +55,81 @@ class MainScreen extends StatelessWidget {
                   left: 0,
                   right: 0,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Text(
-                            "ملیکا عزیزی - یک روز پیش ",
+                            homePosterData["writer"] +
+                                " - " +
+                                homePosterData["date"],
                             style: themeData.titleMedium,
                           ),
-                          Text("like 245",
-                              style: themeData.titleMedium)
+                          Row(
+                            children: [
+                              Text(homePosterData["view"],
+                                  style: themeData.titleMedium),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Icon(
+                                Icons.remove_red_eye,
+                                color: Colors.white,
+                                size: 17,
+                              ),
+                            ],
+                          )
                         ],
                       ),
                       Text(
-                        'دوازده قدم برنامه نویسی...',
+                        homePosterData["titile"],
                         style: themeData.displayLarge,
                       )
                     ],
                   ),
                 )
               ],
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            SizedBox(
+              height: 50,
+              child: ListView.builder(
+                itemCount: taghList.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding:  EdgeInsets.fromLTRB(0, 8,index==0?marginBody:15, 0),
+                    child: Container(
+                      height: 30,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(35),
+                        gradient: const LinearGradient(
+                            begin: Alignment.centerRight,
+                            end: Alignment.centerLeft,
+                            colors: GradientColors.tags),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                        child: Row(
+                          children: [
+                            Assets.icon.hash.image(height: 14),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Text(
+                              taghList[index].titile,
+                              style: themeData.displayMedium,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
             )
           ],
         ),
