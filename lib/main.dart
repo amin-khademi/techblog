@@ -72,6 +72,6 @@ class MyApp extends StatelessWidget {
                   color: SolidColor.posterSubTitle) ),
           
         ),
-        home: const RegisterIntro());
+        home: const SplashScreen());
   }
 }

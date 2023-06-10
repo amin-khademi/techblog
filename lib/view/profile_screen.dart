@@ -23,83 +23,86 @@ class ProfileScreen extends StatelessWidget {
     return SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Center(
-            child: Column(
-          children: [
-            
-            Assets.img.profileImg.image(height: size.height / 7),
-            const SizedBox(
-              height: 12,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Assets.icon.pen.image(height: size.height / 37),
-                const SizedBox(
-                  width: 8,
-                ),
-                Text(MyStrings.imageProfileEdit, style: themeData.displaySmall)
-              ],
-            ),
-            const SizedBox(
-              height: 60,
-            ),
-            Text(
-              "فاطمه امیری",
-              style: themeData.headlineMedium,
-            ),
-            SizedBox(height: 5,),
-            Text(
-              "fatemeamiri@gmail.com",
-              style: themeData.headlineMedium,
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            TechDivider(size: size),
-            SizedBox(width: size.width/1.5,
-              child: InkWell(borderRadius: BorderRadius.circular(10),splashColor: SolidColor.pimaryColor.withOpacity(0.5),
-                  onTap: () {},
-                  child: SizedBox(
-                    height: 45,
-                    child: Center(
-                      child: Text(
-                        MyStrings.myFavBlog,
-                        style: themeData.headlineMedium,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 24),
+              child: Column(
+                      children: [
+              
+              Assets.img.profileImg.image(height: size.height / 7),
+              const SizedBox(
+                height: 12,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Assets.icon.pen.image(height: size.height / 37),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Text(MyStrings.imageProfileEdit, style: themeData.displaySmall)
+                ],
+              ),
+              const SizedBox(
+                height: 60,
+              ),
+              Text(
+                "فاطمه امیری",
+                style: themeData.headlineMedium,
+              ),
+              const SizedBox(height: 5,),
+              Text(
+                "fatemeamiri@gmail.com",
+                style: themeData.headlineMedium,
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              TechDivider(size: size),
+              SizedBox(width: size.width/1.5,
+                child: InkWell(borderRadius: BorderRadius.circular(10),splashColor: SolidColor.pimaryColor.withOpacity(0.5),
+                    onTap: () {},
+                    child: SizedBox(
+                      height: 45,
+                      child: Center(
+                        child: Text(
+                          MyStrings.myFavBlog,
+                          style: themeData.headlineMedium,
+                        ),
                       ),
-                    ),
-                  )),
-            ),
-            TechDivider(size: size),
-            SizedBox(width: size.width/1.5,
-              child: InkWell(borderRadius: BorderRadius.circular(10),splashColor: SolidColor.pimaryColor.withOpacity(0.5),
-                  onTap: () {},
-                  child: SizedBox(
-                    height: 45,
-                    child: Center(
-                      child: Text(
-                        MyStrings.myFavPodcast,
-                        style: themeData.headlineMedium,
+                    )),
+              ),
+              TechDivider(size: size),
+              SizedBox(width: size.width/1.5,
+                child: InkWell(borderRadius: BorderRadius.circular(10),splashColor: SolidColor.pimaryColor.withOpacity(0.5),
+                    onTap: () {},
+                    child: SizedBox(
+                      height: 45,
+                      child: Center(
+                        child: Text(
+                          MyStrings.myFavPodcast,
+                          style: themeData.headlineMedium,
+                        ),
                       ),
-                    ),
-                  )),
-            ),
-            TechDivider(size: size),
-            SizedBox(
-              width: size.width/1.5,
-              child: InkWell(borderRadius: BorderRadius.circular(10),splashColor: SolidColor.pimaryColor.withOpacity(0.5),
-                  onTap: () {},
-                  child: SizedBox(
-                    height: 45,
-                    child: Center(
-                      child: Text(
-                        MyStrings.logOut,
-                        style: themeData.headlineMedium,
+                    )),
+              ),
+              TechDivider(size: size),
+              SizedBox(
+                width: size.width/1.5,
+                child: InkWell(borderRadius: BorderRadius.circular(10),splashColor: SolidColor.pimaryColor.withOpacity(0.5),
+                    onTap: () {},
+                    child: SizedBox(
+                      height: 45,
+                      child: Center(
+                        child: Text(
+                          MyStrings.logOut,
+                          style: themeData.headlineMedium,
+                        ),
                       ),
+                    )),
+              ),
+                  const SizedBox(height: 60,)
+                      ],
                     ),
-                  )),
-            ),
-                const SizedBox(height: 60,)
-          ],
-        )));
+            )));
   }
 }

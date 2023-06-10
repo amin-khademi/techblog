@@ -45,17 +45,16 @@ class _MainScreenState extends State<MainScreen> {
         ),
         body: Stack(
           children: [
-            Center(
-                child: Positioned.fill(
-                    child: IndexedStack(
+            Positioned.fill(
+                child: IndexedStack(
               index: selectedPageIndex,
               children: [
-                HomeScreen(
-                    marginBody: marginBody, size: size, themeData: themeData),
-                ProfileScreen(
-                    marginBody: marginBody, size: size, themeData: themeData),
+            HomeScreen(
+                marginBody: marginBody, size: size, themeData: themeData),
+            ProfileScreen(
+                marginBody: marginBody, size: size, themeData: themeData),
               ],
-            ))),
+            )),
             BottomNavigation(
                 changeScreen: (int value) {
                   setState(() {
