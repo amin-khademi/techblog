@@ -1,18 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:techblog/gen/assets.gen.dart';
-import 'package:techblog/models/fake_data.dart';
 import 'package:techblog/my_colros.dart';
-import 'package:techblog/my_strings.dart';
 import 'package:techblog/view/home_screen.dart';
+import 'package:techblog/view/profile_screen.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  var selectedPageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     var themeData = Theme.of(context).textTheme;
     double marginBody = size.width / 10;
+
+    List<Widget> techMainScreenPage = [
+      HomeScreen(marginBody: marginBody, size: size, themeData: themeData),
+      ProfileScreen(marginBody: marginBody, size: size, themeData: themeData),
+    ];
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: SolidColor.scafoldBg,
@@ -36,46 +48,74 @@ class MainScreen extends StatelessWidget {
         ),
         body: Stack(
           children: [
-            HomeScreen(marginBody: marginBody, size: size, themeData: themeData),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-            height: size.height / 12.3,
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    end: Alignment.bottomCenter,
-                    begin: Alignment.topCenter,
-                    colors: GradientColors.bottomNavigationback)),
-            child: Padding(
-              padding:  EdgeInsets.symmetric(horizontal: marginBody),
-              child: Container(
-                height: size.height / 8,
-                decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(18)),
-                    gradient:
-                        LinearGradient(colors: GradientColors.bottomNavigation)),
-                child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    
-                    
-                    
-                    IconButton(onPressed: () {}, icon: Assets.icon.user.image()),
-                    IconButton(onPressed: () {}, icon: Assets.icon.w.image()),
-                    IconButton(onPressed: () {}, icon: Assets.icon.icon.image()),
-                    
-                  ],
-                ),
-              ),
-            ),
-                  ),
-          ),
+            Center(
+                child: Positioned.fill(
+                    child: techMainScreenPage[selectedPageIndex])),
+            BottomNavigation(
+                changeScreen: (int value) {
+                  setState(() {
+                    selectedPageIndex = value;
+                  });
+                },
+                size: size,
+                marginBody: marginBody),
           ],
         ),
-        
       ),
     );
   }
 }
 
+class BottomNavigation extends StatelessWidget {
+  const BottomNavigation({
+    super.key,
+    required this.size,
+    required this.marginBody,
+    required this.changeScreen,
+  });
+
+  final Size size;
+  final double marginBody;
+  final Function(int) changeScreen;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      bottom: 0,
+      left: 0,
+      right: 0,
+      child: Container(
+        height: size.height / 12.3,
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                end: Alignment.bottomCenter,
+                begin: Alignment.topCenter,
+                colors: GradientColors.bottomNavigationback)),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: marginBody),
+          child: Container(
+            height: size.height / 8,
+            decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(18)),
+                gradient:
+                    LinearGradient(colors: GradientColors.bottomNavigation)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [IconButton(
+                    onPressed: () => changeScreen(0),
+                    icon: Assets.icon.icon.image(height: size.height / 28))
+                
+                ,IconButton(
+                    onPressed: () {},
+                    icon: Assets.icon.w.image(height: size.height / 28)),
+                 IconButton(
+                    onPressed: () => changeScreen(1),
+                    icon: Assets.icon.user.image(height: size.height / 28)),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

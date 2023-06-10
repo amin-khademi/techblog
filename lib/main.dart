@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
                   fontFamily: defaultTextStyle.fontFamily,
                   fontSize: 14,
                   fontWeight: FontWeight.w300,
-                  color: SolidColor.posterSubTitle),
+                  color: SolidColor.profileText),
                   bodyLarge:TextStyle(
                   //? bodytext1
                   fontFamily: defaultTextStyle.fontFamily,
