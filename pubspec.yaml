@@ -39,6 +39,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_spinkit: ^5.2.0
+  flutter_svg: ^2.0.5
   
   
   
@@ -217,6 +218,8 @@ flutter:
     - assets/img/
     - assets/icon/
 
+  # pubspec.yaml
+  
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

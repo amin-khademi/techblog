@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:techblog/my_colros.dart';
+import 'package:techblog/view/RegisterIntro.dart';
 import 'package:techblog/view/splash_screen.dart';
 
 
@@ -71,6 +72,6 @@ class MyApp extends StatelessWidget {
                   color: SolidColor.posterSubTitle) ),
           
         ),
-        home: const SplashScreen());
+        home: const RegisterIntro());
   }
 }

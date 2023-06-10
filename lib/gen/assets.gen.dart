@@ -48,8 +48,11 @@ class $AssetsImgGen {
   AssetGenImage get profileImg =>
       const AssetGenImage('assets/img/profile_img.png');
 
+  /// File path: assets/img/sing.svg
+  String get sing => 'assets/img/sing.svg';
+
   /// List of all assets
-  List<AssetGenImage> get values => [a1, posterTest, profileImg];
+  List<dynamic> get values => [a1, posterTest, profileImg, sing];
 }
 
 class Assets {

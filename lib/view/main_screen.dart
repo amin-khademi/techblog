@@ -20,10 +20,7 @@ class _MainScreenState extends State<MainScreen> {
     var themeData = Theme.of(context).textTheme;
     double marginBody = size.width / 10;
 
-    List<Widget> techMainScreenPage = [
-      HomeScreen(marginBody: marginBody, size: size, themeData: themeData),
-      ProfileScreen(marginBody: marginBody, size: size, themeData: themeData),
-    ];
+    
 
     return SafeArea(
       child: Scaffold(
@@ -50,7 +47,15 @@ class _MainScreenState extends State<MainScreen> {
           children: [
             Center(
                 child: Positioned.fill(
-                    child: techMainScreenPage[selectedPageIndex])),
+                    child: IndexedStack(
+              index: selectedPageIndex,
+              children: [
+                HomeScreen(
+                    marginBody: marginBody, size: size, themeData: themeData),
+                ProfileScreen(
+                    marginBody: marginBody, size: size, themeData: themeData),
+              ],
+            ))),
             BottomNavigation(
                 changeScreen: (int value) {
                   setState(() {
@@ -101,14 +106,14 @@ class BottomNavigation extends StatelessWidget {
                     LinearGradient(colors: GradientColors.bottomNavigation)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [IconButton(
+              children: [
+                IconButton(
                     onPressed: () => changeScreen(0),
-                    icon: Assets.icon.icon.image(height: size.height / 28))
-                
-                ,IconButton(
+                    icon: Assets.icon.icon.image(height: size.height / 28)),
+                IconButton(
                     onPressed: () {},
                     icon: Assets.icon.w.image(height: size.height / 28)),
-                 IconButton(
+                IconButton(
                     onPressed: () => changeScreen(1),
                     icon: Assets.icon.user.image(height: size.height / 28)),
               ],
