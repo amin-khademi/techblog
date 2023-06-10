@@ -15,14 +15,23 @@ class $AssetsIconGen {
   /// File path: assets/icon/hash.png
   AssetGenImage get hash => const AssetGenImage('assets/icon/hash.png');
 
+  /// File path: assets/icon/icon.png
+  AssetGenImage get icon => const AssetGenImage('assets/icon/icon.png');
+
   /// File path: assets/icon/micro.png
   AssetGenImage get micro => const AssetGenImage('assets/icon/micro.png');
 
   /// File path: assets/icon/pen.png
   AssetGenImage get pen => const AssetGenImage('assets/icon/pen.png');
 
+  /// File path: assets/icon/user.png
+  AssetGenImage get user => const AssetGenImage('assets/icon/user.png');
+
+  /// File path: assets/icon/w.png
+  AssetGenImage get w => const AssetGenImage('assets/icon/w.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [hash, micro, pen];
+  List<AssetGenImage> get values => [hash, icon, micro, pen, user, w];
 }
 
 class $AssetsImgGen {
