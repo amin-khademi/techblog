@@ -15,8 +15,14 @@ class $AssetsIconGen {
   /// File path: assets/icon/hash.png
   AssetGenImage get hash => const AssetGenImage('assets/icon/hash.png');
 
+  /// File path: assets/icon/micro.png
+  AssetGenImage get micro => const AssetGenImage('assets/icon/micro.png');
+
+  /// File path: assets/icon/pen.png
+  AssetGenImage get pen => const AssetGenImage('assets/icon/pen.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [hash];
+  List<AssetGenImage> get values => [hash, micro, pen];
 }
 
 class $AssetsImgGen {

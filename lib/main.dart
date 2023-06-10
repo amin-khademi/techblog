@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
                   fontFamily: defaultTextStyle.fontFamily,
                   fontSize: 14,
                   fontWeight: FontWeight.w300,
-                  color: const Color.fromARGB(255, 53, 53, 53)),
+                  color: SolidColor.seeMore),
                   headlineMedium: TextStyle(
                   //? headline4
                   fontFamily: defaultTextStyle.fontFamily,

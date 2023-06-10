@@ -14,6 +14,7 @@ class SolidColor {
   static const Color submitArticle = Color.fromARGB(255, 209, 209, 209);
   static const Color submitPodcast = Color.fromARGB(255, 209, 209, 209);
   static const Color submitText = Color.fromARGB(255, 197, 197, 197);
+  static const Color seeMore = Color.fromARGB(255, 40, 107, 184);
 }
 
 class GradientColors {
@@ -24,6 +25,10 @@ class GradientColors {
   static const List<Color> tags = [
     Color.fromARGB(255, 0, 0, 0),
     Color.fromARGB(255, 63, 63, 63)
+  ];
+  static const List<Color> blogList = [
+    Color.fromARGB(255, 0, 0, 0),
+    Color.fromARGB(0, 0, 0, 0)
   ];
   static const List<Color> homePosterGradient = [
     Color.fromARGB(220, 28, 20, 81),
