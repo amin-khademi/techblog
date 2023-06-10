@@ -1,4 +1,4 @@
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+
 
 class Hash {
   final String titile;

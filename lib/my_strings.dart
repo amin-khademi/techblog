@@ -46,7 +46,7 @@ www.sasansafari.com
 
   static String visit = 'بازدید';
   static String titleAppBarManageArticle = "مدیریت مقاله ها";
-  static String ManagePodcast = "مدیریت پادکست ها";
+  static String managePodcast = "مدیریت پادکست ها";
   static String titleAppBarArticleContentEditor = "نوشتن/ویرایش مقاله ";
   static String hintArticleContentEditor = "میتونی مقاله‌تو اینجا بنویسی...";
   static String textManageArticle = "بریم برای نوشتن یه مقاله باحال";
