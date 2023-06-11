@@ -4,6 +4,7 @@ import 'package:techblog/my_colros.dart';
 import 'package:techblog/my_strings.dart';
 
 import '../models/fake_data.dart';
+import '../my_componnent.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -293,46 +294,23 @@ class HomePageTagList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 50,
+      height: 45,
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
-        itemCount: taghList.length,
+        itemCount: 5,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return Padding(
             padding: EdgeInsets.fromLTRB(
                 0, 8, index == 0 ? marginBody : 15, 0),
-            child: Container(
-              height: 30,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(35),
-                gradient: const LinearGradient(
-                    begin: Alignment.centerRight,
-                    end: Alignment.centerLeft,
-                    colors: GradientColors.tags),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-                child: Row(
-                  children: [
-                    Assets.icon.hash.image(height: 14),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    Text(
-                      taghList[index].titile,
-                      style: themeData.displayMedium,
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            child: MainTags(themeData: themeData,index:index ,),
           );
         },
       ),
     );
   }
 }
+
 
 class HomePagePoster extends StatelessWidget {
   const HomePagePoster({

@@ -17,7 +17,7 @@ List<Hash> taghList = [
   Hash(titile: "پایتون"),
   Hash(titile: "پی اچ پی")
 ];
-
+ List<Hash> myCats=[];
 
 List<BlogModel> blogList = [
   BlogModel(
