@@ -4,8 +4,6 @@ import 'package:techblog/my_colros.dart';
 import 'package:techblog/my_componnent.dart';
 import 'package:techblog/my_strings.dart';
 
-import '../models/fake_data.dart';
-
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({
     super.key,

@@ -1,10 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:techblog/gen/assets.gen.dart';
-import 'package:techblog/models/date_model.dart';
 import 'package:techblog/models/fake_data.dart';
 import 'package:techblog/my_colros.dart';
 import 'package:techblog/my_componnent.dart';
@@ -83,22 +80,20 @@ class _MyCategoryState extends State<MyCategory> {
                       return InkWell(
                           onTap: () {
                             setState(() {
-                              if (myCats.contains(taghList[index])) {
-                                print("$myCats[index] exists");
-                              } else {
+                              if (!myCats.contains(taghList[index])) {
                                 myCats.add(taghList[index]);
-                              }
+                              } else{}
                             });
                           },
                           child: MainTags(themeData: themeData, index: index));
                     },
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 Assets.icon.downcat.image(scale: 3),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 SizedBox(

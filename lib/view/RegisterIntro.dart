@@ -4,7 +4,6 @@ import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/my_colros.dart';
 import 'package:techblog/my_strings.dart';
 import 'package:techblog/view/my_category.dart';
-import 'package:validators/validators.dart';
 
 class RegisterIntro extends StatelessWidget {
   const RegisterIntro({super.key});
@@ -13,7 +12,7 @@ class RegisterIntro extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     var themeData = Theme.of(context).textTheme;
-    double marginBody = size.width / 10;
+    
     return SafeArea(
       child: Scaffold(
         backgroundColor: SolidColor.scafoldBg,
@@ -79,7 +78,7 @@ class RegisterIntro extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(24, 24, 24, 24),
                     child: TextField(
                       onChanged: (value) {
-                        print(isEmail(value));
+                        // print(isEmail(value));
                       },
                       style: themeData.headlineSmall,
                       textAlign: TextAlign.center,
@@ -93,7 +92,7 @@ class RegisterIntro extends StatelessWidget {
                         Navigator.of(context).pop();
                         _showCodeBottomSheet(context, size, themeData);
                       },
-                      child: Text("ادامه"))
+                      child: const Text("ادامه"))
                 ],
               ),
             ),
