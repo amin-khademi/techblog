@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           inputDecorationTheme: InputDecorationTheme(border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),
-            borderSide: BorderSide(width: 2)
+            borderSide: const BorderSide(width: 2)
           ),
           
           ),
