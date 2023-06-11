@@ -4,7 +4,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:techblog/my_colros.dart';
 import 'package:techblog/view/RegisterIntro.dart';
 import 'package:techblog/view/main_screen.dart';
-import 'package:techblog/view/splash_screen.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -98,6 +97,6 @@ class MyApp extends StatelessWidget {
                   fontWeight: FontWeight.w300,
                   color: SolidColor.posterSubTitle)),
         ),
-        home: const MainScreen());
+        home: const RegisterIntro());
   }
 }

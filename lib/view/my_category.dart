@@ -83,7 +83,11 @@ class _MyCategoryState extends State<MyCategory> {
                       return InkWell(
                           onTap: () {
                             setState(() {
-                              myCats.add(Hash(titile: taghList[index].titile));
+                              if (myCats.contains(taghList[index])) {
+                                print("$myCats[index] exists");
+                              } else {
+                                myCats.add(taghList[index]);
+                              }
                             });
                           },
                           child: MainTags(themeData: themeData, index: index));

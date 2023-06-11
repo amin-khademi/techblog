@@ -11,6 +11,8 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
+final GlobalKey<ScaffoldState> _key = GlobalKey();
+
 class _MainScreenState extends State<MainScreen> {
   var selectedPageIndex = 0;
 
@@ -20,27 +22,83 @@ class _MainScreenState extends State<MainScreen> {
     var themeData = Theme.of(context).textTheme;
     double marginBody = size.width / 10;
 
-    
-
     return SafeArea(
-      child: Scaffold(
+      
+      child: Scaffold(key: _key,
+        drawer: Drawer(
+          backgroundColor: SolidColor.scafoldBg,
+          child: Padding(
+            padding: EdgeInsets.only(left: marginBody, right: marginBody),
+            child: ListView(
+              children: [
+                DrawerHeader(child: Assets.img.a1.image(scale: 3)),
+                ListTile(
+                  title: Text(
+                    "پروفایل کاربری",
+                    style: themeData.headlineMedium,
+                  ),
+                  onTap: () {},
+                ),
+                const Divider(
+                  color: SolidColor.dividerColor,
+                ),
+                ListTile(
+                  title: Text(
+                    "درباره تک‌ بلاگ",
+                    style: themeData.headlineMedium,
+                  ),
+                  onTap: () {},
+                ),
+                const Divider(
+                  color: SolidColor.dividerColor,
+                ),
+                ListTile(
+                  title: Text(
+                    "اشتراک گذاری تک بلاگ",
+                    style: themeData.headlineMedium,
+                  ),
+                  onTap: () {},
+                ),
+                const Divider(
+                  color: SolidColor.dividerColor,
+                ),
+                ListTile(
+                  title: Text(
+                    "تک‌ بلاگ در گیت هاب",
+                    style: themeData.headlineMedium,
+                  ),
+                  onTap: () {},
+                ),
+              ],
+            ),
+          ),
+        ),
         backgroundColor: SolidColor.scafoldBg,
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: SolidColor.scafoldBg,
           elevation: 0,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Icon(
-                Icons.menu,
-                color: Colors.black,
-              ),
-              Assets.img.a1.image(height: size.height / 13.6),
-              const Icon(
-                Icons.search,
-                color: Colors.black,
-              )
-            ],
+          title: Padding(
+            padding: EdgeInsets.symmetric(horizontal: marginBody - 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                  onTap: (() {
+                    _key.currentState!.openDrawer();
+                  }),
+                  child: const Icon(
+                    Icons.menu,
+                    color: Colors.black,
+                  ),
+                ),
+                Assets.img.a1.image(height: size.height / 13.6),
+                const Icon(
+                  Icons.search,
+                  color: Colors.black,
+                )
+              ],
+            ),
           ),
         ),
         body: Stack(
@@ -49,10 +107,10 @@ class _MainScreenState extends State<MainScreen> {
                 child: IndexedStack(
               index: selectedPageIndex,
               children: [
-            HomeScreen(
-                marginBody: marginBody, size: size, themeData: themeData),
-            ProfileScreen(
-                marginBody: marginBody, size: size, themeData: themeData),
+                HomeScreen(
+                    marginBody: marginBody, size: size, themeData: themeData),
+                ProfileScreen(
+                    marginBody: marginBody, size: size, themeData: themeData),
               ],
             )),
             BottomNavigation(
@@ -86,7 +144,6 @@ class BottomNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        
         Positioned(
           bottom: 0,
           left: 0,
@@ -98,14 +155,13 @@ class BottomNavigation extends StatelessWidget {
                     end: Alignment.bottomCenter,
                     begin: Alignment.topCenter,
                     colors: GradientColors.bottomNavigationback)),
-            
           ),
         ),
-      Positioned(
-        bottom: 16,
-        right: 0
-        ,left: 0,
-        child: Padding(
+        Positioned(
+          bottom: 16,
+          right: 0,
+          left: 0,
+          child: Padding(
             padding: EdgeInsets.symmetric(horizontal: marginBody),
             child: Container(
               height: size.height / 10,
@@ -129,7 +185,7 @@ class BottomNavigation extends StatelessWidget {
               ),
             ),
           ),
-      ),
+        ),
       ],
     );
   }
