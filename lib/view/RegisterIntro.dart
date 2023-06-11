@@ -34,22 +34,50 @@ class RegisterIntro extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 32),
               child: ElevatedButton(
-                onPressed: () {},
-                child:  Text(
+                onPressed: () {
+                  showModalBottomSheet(
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    context: context,
+                    builder: (context) {
+                      return Padding(
+                        padding:  EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                        child: Container(
+                          height: size.height / 2,
+                          decoration: const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(30),
+                                  topRight: Radius.circular(30))),
+                          child: Center(
+                            child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  MyStrings.insertYourEmail,
+                                  style: themeData.headlineMedium,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(24, 24, 24, 24),
+                                  child: TextField(textAlign: TextAlign.center,
+                                    decoration: InputDecoration(
+                                        hintText: "techBLog@gmail.com",
+                                        hintStyle: themeData.headlineSmall),
+                                  ),
+                                ),
+                                ElevatedButton(onPressed: () {
+                                  
+                                }, child: Text("ادامه"))
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+                child: const Text(
                   "بزن بریم",
                 ),
-                style: ButtonStyle(
-                    textStyle: MaterialStateProperty.resolveWith((states) {
-                  if (states.contains(MaterialState.pressed)) {
-                    return themeData.titleLarge;
-                  }
-                  return themeData.bodyMedium;
-                }), backgroundColor: MaterialStateProperty.resolveWith((states) {
-                  if (states.contains(MaterialState.pressed)) {
-                    return SolidColor.seeMore;
-                  }
-                  return SolidColor.pimaryColor;
-                })),
               ),
             )
           ],

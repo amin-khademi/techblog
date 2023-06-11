@@ -17,6 +17,7 @@ class SolidColor {
   static const Color submitText = Color.fromARGB(255, 197, 197, 197);
   static const Color seeMore = Color.fromARGB(255, 40, 107, 184);
   static const Color dividerColor = Color.fromARGB(200, 112, 112, 112);
+  static const Color hintTextColor = Color.fromARGB(255, 170, 170, 170);
 }
 
 class GradientColors {
