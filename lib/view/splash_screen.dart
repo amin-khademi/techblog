@@ -1,11 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:techblog/component/my_colros.dart';
 import 'package:techblog/gen/assets.gen.dart';
-
-
-
-import 'package:techblog/my_colros.dart';
 import 'package:techblog/view/main_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -32,6 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            
             Center(child: Assets.img.a1.image(height: 64)),
             const SizedBox(
               height: 30,

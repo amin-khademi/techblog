@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:techblog/gen/assets.gen.dart';
+import 'package:techblog/models/fake_data.dart';
 
-import 'models/fake_data.dart';
 import 'my_colros.dart';
 
 class TechDivider extends StatelessWidget {
@@ -26,7 +26,8 @@ class TechDivider extends StatelessWidget {
 class MainTags extends StatelessWidget {
   const MainTags({
     super.key,
-    required this.themeData, required this.index,
+    required this.themeData,
+    required this.index,
   });
 
   final TextTheme themeData;
@@ -35,7 +36,6 @@ class MainTags extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(35),
         gradient: const LinearGradient(

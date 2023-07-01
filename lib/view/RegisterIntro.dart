@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:techblog/component/my_colros.dart';
+import 'package:techblog/component/my_strings.dart';
 import 'package:techblog/gen/assets.gen.dart';
-import 'package:techblog/my_colros.dart';
-import 'package:techblog/my_strings.dart';
 import 'package:techblog/view/my_category.dart';
 
 class RegisterIntro extends StatelessWidget {
@@ -12,7 +12,7 @@ class RegisterIntro extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     var themeData = Theme.of(context).textTheme;
-    
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: SolidColor.scafoldBg,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:techblog/component/my_colros.dart';
 import 'package:techblog/gen/assets.gen.dart';
-import 'package:techblog/my_colros.dart';
 import 'package:techblog/view/home_screen.dart';
 import 'package:techblog/view/profile_screen.dart';
 
@@ -109,8 +109,8 @@ class _MainScreenState extends State<MainScreen> {
               children: [
                 HomeScreen(
                     marginBody: marginBody, size: size, themeData: themeData),
-                ProfileScreen(
-                    marginBody: marginBody, size: size, themeData: themeData),
+                const ProfileScreen(
+                    ),
               ],
             )),
             BottomNavigation(
