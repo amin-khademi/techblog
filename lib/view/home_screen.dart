@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(
                   height: 16,
                 ),
-                HomePageTagList(marginBody: marginBody, themeData: themeData),
+                tags(),
                 SeeMoreBLogList(
                     marginBody: marginBody, size: size, themeData: themeData),
                 topVisited(),
@@ -257,6 +257,25 @@ class HomeScreen extends StatelessWidget {
       ],
     );
   }
+  Widget tags(){
+    return SizedBox(
+      height: 45,
+      child: ListView.builder(
+        physics: const BouncingScrollPhysics(),
+        itemCount: homeScreenComtroller.tagList.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: EdgeInsets.fromLTRB(0, 8, index == 0 ? marginBody : 15, 0),
+            child: MainTags(
+              themeData: themeData,
+              index: index,
+            ),
+          );
+        },
+      ),
+    );
+  }
 }
 
 
@@ -327,35 +346,5 @@ class SeeMoreBLogList extends StatelessWidget {
   }
 }
 
-class HomePageTagList extends StatelessWidget {
-  const HomePageTagList({
-    super.key,
-    required this.marginBody,
-    required this.themeData,
-  });
 
-  final double marginBody;
-  final TextTheme themeData;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 45,
-      child: ListView.builder(
-        physics: const BouncingScrollPhysics(),
-        itemCount: 5,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: EdgeInsets.fromLTRB(0, 8, index == 0 ? marginBody : 15, 0),
-            child: MainTags(
-              themeData: themeData,
-              index: index,
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
 

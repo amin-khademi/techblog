@@ -1,5 +1,3 @@
-
-
 class TagsModel {
   String? id;
   String? title;
@@ -8,7 +6,7 @@ class TagsModel {
     required this.id,
     required this.title,
   });
-  TagsModel.fromjsom(Map<String, dynamic> element) {
+  TagsModel.fromjson(Map<String, dynamic> element) {
     id = element["id"];
     title = element["title"];
   }

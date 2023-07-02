@@ -32,6 +32,10 @@ class HomeScreenController extends GetxController {
       });
 
       poster.value = PosterModel.fromjsom(response.data["poster"]);
+      
+      response.data["tags"].forEach((element) {
+        tagList.add(TagsModel.fromjson(element));
+      });
 
       loading.value = false;
     }
