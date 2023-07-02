@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:techblog/component/my_colros.dart';
 import 'package:techblog/gen/assets.gen.dart';
-import 'package:techblog/view/main_screen.dart';
+import 'package:techblog/view/main-screen/main_screen.dart';
+
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

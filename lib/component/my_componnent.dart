@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+import 'package:techblog/component/test_style.dart';
 import 'package:techblog/controller/home_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/models/fake_data.dart';
@@ -89,3 +90,38 @@ class Loading extends StatelessWidget {
     );
   }
 }
+
+  PreferredSize appBar(String titile) {
+    return PreferredSize(
+    preferredSize: const Size.fromHeight(80),
+    child: Padding(
+      padding: const EdgeInsets.all(12),
+      child: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(left: 16),
+            child: Center(
+                child: Text(
+              titile,
+              style: appBarTextStyle,
+            )),
+          ),
+        ],
+        leading: Padding(
+          padding: const EdgeInsets.only(right: 16),
+          child: Container(
+            height: 40,
+            width: 40,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: SolidColor.pimaryColor.withBlue(100),
+            ),child:Icon(Icons.chevron_left_rounded) ,
+          ),
+        ),
+      ),
+    ),
+  );
+  }
+

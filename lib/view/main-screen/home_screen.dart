@@ -9,7 +9,7 @@ import 'package:techblog/component/my_strings.dart';
 import 'package:techblog/controller/home_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
 
-import '../models/fake_data.dart';
+
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({

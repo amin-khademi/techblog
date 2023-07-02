@@ -5,8 +5,9 @@ import 'package:techblog/component/my_colros.dart';
 import 'package:techblog/component/my_componnent.dart';
 import 'package:techblog/component/my_strings.dart';
 import 'package:techblog/gen/assets.gen.dart';
-import 'package:techblog/view/home_screen.dart';
-import 'package:techblog/view/profile_screen.dart';
+import 'package:techblog/view/main-screen/home_screen.dart';
+import 'package:techblog/view/main-screen/profile_screen.dart';
+
 
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
