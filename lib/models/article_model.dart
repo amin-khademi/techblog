@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:flutter/material.dart';
 import 'package:techblog/component/api_constant.dart';
 
 class ArticleModel {
@@ -12,28 +9,30 @@ class ArticleModel {
   String? author;
   String? view;
   String? status;
+  // String? isFavorite;
   String? createdAt;
 
-  ArticleModel({
-    required this.id,
-    required this.title,
-    required this.image,
-    required this.catId,
-    required this.catName,
-    required this.author,
-    required this.view,
-    required this.status,
-    required this.createdAt
-
-  });
-  ArticleModel.fromjsom(Map<String,dynamic>element ){
-  id=element["id"];
-  title=element["title"];
-  image=ApiConstant.hostDlUrl+ element["image"];
-  catId=element["cat_id"];
-  catName=element["cat_name"];
-  author=element["author"];
-  view=element["view"];
-  status=element["status"];
-  createdAt=element["created_at"];
-  }}
+  ArticleModel(
+      {required this.id,
+      required this.title,
+      required this.image,
+      required this.catId,
+      required this.catName,
+      required this.author,
+      required this.view,
+      required this.status,
+      //  this.isFavorite,
+      required this.createdAt});
+  ArticleModel.fromjsom(Map<String, dynamic> element) {
+    id = element["id"];
+    title = element["title"];
+    image = ApiConstant.hostDlUrl + element["image"];
+    catId = element["cat_id"];
+    catName = element["cat_name"];
+    author = element["author"];
+    view = element["view"];
+    status = element["status"];
+    // isFavorite = element["isFavorite"];
+    createdAt = element["created_at"];
+  }
+}
