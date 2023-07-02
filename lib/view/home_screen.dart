@@ -1,44 +1,141 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:techblog/component/my_colros.dart';
 import 'package:techblog/component/my_componnent.dart';
 import 'package:techblog/component/my_strings.dart';
+import 'package:techblog/controller/home_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
 
 import '../models/fake_data.dart';
 
-
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({
+  HomeScreen({
     super.key,
     required this.marginBody,
     required this.size,
     required this.themeData,
   });
-
+  HomeScreenController homeScreenComtroller = Get.put(HomeScreenController());
   final double marginBody;
   final Size size;
   final TextTheme themeData;
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(physics: const BouncingScrollPhysics(),
+    
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const Padding(
             padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
           ),
-          HomePagePoster(marginBody: marginBody, size: size, themeData: themeData),
+          HomePagePoster(
+              marginBody: marginBody, size: size, themeData: themeData),
           const SizedBox(
             height: 16,
           ),
           HomePageTagList(marginBody: marginBody, themeData: themeData),
-          SeeMoreBLogList(marginBody: marginBody, size: size, themeData: themeData),
-          HomePageBlogList(size: size, marginBody: marginBody, themeData: themeData),
-          SeeMorePodcasts(marginBody: marginBody, size: size, themeData: themeData),
+          SeeMoreBLogList(
+              marginBody: marginBody, size: size, themeData: themeData),
+          topVisited(),
+          SeeMorePodcasts(
+              marginBody: marginBody, size: size, themeData: themeData),
           HomePagePodcastsList(size: size, marginBody: marginBody),
-          const SizedBox(height: 60,)
+          const SizedBox(
+            height: 60,
+          )
         ],
+      ),
+    );
+  }
+
+  Widget topVisited(){
+    return SizedBox(
+      height: size.height / 3.5,
+      child: Obx(
+        ()=> ListView.builder(
+          physics: const BouncingScrollPhysics(),
+          itemCount: homeScreenComtroller.topVisited.length,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: index == 0 ? marginBody : 20),
+                  child: SizedBox(
+                    height: size.height / 5.3,
+                    width: size.width / 2.2,
+                    child: Stack(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(16),
+                            ),
+                            image: DecorationImage(
+                                image: NetworkImage(homeScreenComtroller.topVisited[index].image!),
+                                fit: BoxFit.cover),
+                          ),
+                          foregroundDecoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(16)),
+                              gradient: LinearGradient(
+                                  end: Alignment.center,
+                                  begin: Alignment.bottomCenter,
+                                  colors: GradientColors.blogList)),
+                        ),
+                        Positioned(
+                          bottom: 8,
+                          right: 0,
+                          left: 0,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(
+                                homeScreenComtroller.topVisited[index].author!,
+                                style: themeData.titleMedium,
+                              ),
+                              Row(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(homeScreenComtroller.topVisited[index].view!,
+                                          style: themeData.titleMedium),
+                                      const SizedBox(
+                                        width: 8,
+                                      ),
+                                      const Icon(
+                                        Icons.remove_red_eye,
+                                        color: Colors.white,
+                                        size: 17,
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(right: index == 0 ? marginBody : 15),
+                  child: SizedBox(
+                      width: size.width / 2.2,
+                      child: Text(
+                        homeScreenComtroller.topVisited[index].title!,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                      )),
+                )
+              ],
+            );
+          },
+        ),
       ),
     );
   }
@@ -66,8 +163,7 @@ class HomePagePodcastsList extends StatelessWidget {
           return Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(
-                    right: index == 0 ? marginBody : 20),
+                padding: EdgeInsets.only(right: index == 0 ? marginBody : 20),
                 child: SizedBox(
                   height: size.height / 5.3,
                   width: size.width / 2.2,
@@ -79,13 +175,11 @@ class HomePagePodcastsList extends StatelessWidget {
                             Radius.circular(16),
                           ),
                           image: DecorationImage(
-                              image: NetworkImage(
-                                  blogList[index].imageUrl),
+                              image: NetworkImage(blogList[index].imageUrl),
                               fit: BoxFit.cover),
                         ),
                         foregroundDecoration: const BoxDecoration(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(16)),
+                          borderRadius: BorderRadius.all(Radius.circular(16)),
                         ),
                       ),
                     ],
@@ -93,8 +187,7 @@ class HomePagePodcastsList extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(
-                    right: index == 0 ? marginBody : 15),
+                padding: EdgeInsets.only(right: index == 0 ? marginBody : 15),
                 child: SizedBox(
                     width: size.width / 2.2,
                     child: Center(
@@ -124,12 +217,11 @@ class SeeMorePodcasts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-          EdgeInsets.only(right: marginBody, top: 16, bottom: 10),
+      padding: EdgeInsets.only(right: marginBody, top: 16, bottom: 10),
       child: Row(
         children: [
-          Assets.icon.micro.image(
-              height: size.height / 37, color: SolidColor.seeMore),
+          Assets.icon.micro
+              .image(height: size.height / 37, color: SolidColor.seeMore),
           const SizedBox(
             width: 10,
           ),
@@ -143,110 +235,7 @@ class SeeMorePodcasts extends StatelessWidget {
   }
 }
 
-class HomePageBlogList extends StatelessWidget {
-  const HomePageBlogList({
-    super.key,
-    required this.size,
-    required this.marginBody,
-    required this.themeData,
-  });
 
-  final Size size;
-  final double marginBody;
-  final TextTheme themeData;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: size.height / 3.5,
-      child: ListView.builder(
-        physics: const BouncingScrollPhysics(),
-        itemCount: blogList.getRange(0, 10).length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(
-                    right: index == 0 ? marginBody : 20),
-                child: SizedBox(
-                  height: size.height / 5.3,
-                  width: size.width / 2.2,
-                  child: Stack(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(16),
-                          ),
-                          image: DecorationImage(
-                              image: NetworkImage(
-                                  blogList[index].imageUrl),
-                              fit: BoxFit.cover),
-                        ),
-                        foregroundDecoration: const BoxDecoration(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(16)),
-                            gradient: LinearGradient(
-                                end: Alignment.center,
-                                begin: Alignment.bottomCenter,
-                                colors: GradientColors.blogList)),
-                      ),
-                      Positioned(
-                        bottom: 8,
-                        right: 0,
-                        left: 0,
-                        child: Row(
-                          mainAxisAlignment:
-                              MainAxisAlignment.spaceAround,
-                          children: [
-                            Text(
-                              blogList[index].writer,
-                              style: themeData.titleMedium,
-                            ),
-                            Row(
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(blogList[index].views,
-                                        style: themeData.titleMedium),
-                                    const SizedBox(
-                                      width: 8,
-                                    ),
-                                    const Icon(
-                                      Icons.remove_red_eye,
-                                      color: Colors.white,
-                                      size: 17,
-                                    ),
-                                  ],
-                                )
-                              ],
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                    right: index == 0 ? marginBody : 15),
-                child: SizedBox(
-                    width: size.width / 2.2,
-                    child: Text(
-                      blogList[index].title,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                    )),
-              )
-            ],
-          );
-        },
-      ),
-    );
-  }
-}
 
 class SeeMoreBLogList extends StatelessWidget {
   const SeeMoreBLogList({
@@ -263,12 +252,11 @@ class SeeMoreBLogList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-          EdgeInsets.only(right: marginBody, top: 16, bottom: 10),
+      padding: EdgeInsets.only(right: marginBody, top: 16, bottom: 10),
       child: Row(
         children: [
-          Assets.icon.pen.image(
-              height: size.height / 37, color: SolidColor.seeMore),
+          Assets.icon.pen
+              .image(height: size.height / 37, color: SolidColor.seeMore),
           const SizedBox(
             width: 10,
           ),
@@ -302,16 +290,17 @@ class HomePageTagList extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return Padding(
-            padding: EdgeInsets.fromLTRB(
-                0, 8, index == 0 ? marginBody : 15, 0),
-            child: MainTags(themeData: themeData,index:index ,),
+            padding: EdgeInsets.fromLTRB(0, 8, index == 0 ? marginBody : 15, 0),
+            child: MainTags(
+              themeData: themeData,
+              index: index,
+            ),
           );
         },
       ),
     );
   }
 }
-
 
 class HomePagePoster extends StatelessWidget {
   const HomePagePoster({
@@ -364,9 +353,7 @@ class HomePagePoster extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
-                    homePosterData["writer"] +
-                        " - " +
-                        homePosterData["date"],
+                    homePosterData["writer"] + " - " + homePosterData["date"],
                     style: themeData.titleMedium,
                   ),
                   Row(
