@@ -25,30 +25,34 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-          ),
-          HomePagePoster(
-              marginBody: marginBody, size: size, themeData: themeData),
-          const SizedBox(
-            height: 16,
-          ),
-          HomePageTagList(marginBody: marginBody, themeData: themeData),
-          SeeMoreBLogList(
-              marginBody: marginBody, size: size, themeData: themeData),
-          topVisited(),
-          SeeMorePodcasts(
-              marginBody: marginBody, size: size, themeData: themeData),
-          topPodcasts(),
-          const SizedBox(
-            height: 60,
-          )
-        ],
+    return Obx(
+    ()=> Padding(
+        padding: const EdgeInsets.only(top: 10),
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child:homeScreenComtroller.loading.value==false? 
+             Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                
+                poster(),
+                const SizedBox(
+                  height: 16,
+                ),
+                HomePageTagList(marginBody: marginBody, themeData: themeData),
+                SeeMoreBLogList(
+                    marginBody: marginBody, size: size, themeData: themeData),
+                topVisited(),
+                SeeMorePodcasts(
+                    marginBody: marginBody, size: size, themeData: themeData),
+                topPodcasts(),
+                const SizedBox(
+                  height: 60,
+                )
+              ],
+            )
+          :const Center(child: Loading()),
+        ),
       ),
     );
   }
@@ -170,10 +174,7 @@ class HomeScreen extends StatelessWidget {
                               image: DecorationImage(
                                   image: imageProvider, fit: BoxFit.cover)),
                         ),
-                        placeholder: (context, url) => const SpinKitFadingCube(
-                          color: SolidColor.pimaryColor,
-                          size: 32,
-                        ),
+                        placeholder: (context, url) => const Loading(),
                         errorWidget: (context, url, error) => const Icon(
                           Icons.image_not_supported,
                           size: 50,
@@ -197,7 +198,68 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+  Widget poster(){
+    return Stack(
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: marginBody),
+          child: Container(
+            height: size.height / 4.2,
+            width: size.width / 1.20,
+            child:CachedNetworkImage(
+                        imageUrl:
+                            homeScreenComtroller.poster.value.image!,
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16),
+                              image: DecorationImage(
+                                  image: imageProvider, fit: BoxFit.cover)),
+                        ),
+                        placeholder: (context, url) => const SpinKitFadingCube(
+                          color: SolidColor.pimaryColor,
+                          size: 32,
+                        ),
+                        errorWidget: (context, url, error) => const Icon(
+                          Icons.image_not_supported,
+                          size: 50,
+                          color: Colors.grey,
+                        ),
+                      ),
+            foregroundDecoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              gradient: const LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                  colors: GradientColors.homePosterGradient),
+            ),
+          ),
+        ),
+        Positioned(
+          bottom: 16,
+          left: 0,
+          right: 8,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 50 ),
+                  child: Text(
+                    homeScreenComtroller.poster.value.title!,
+                    style: themeData.displayLarge,
+                  ),
+                ),
+              )
+            ],
+          ),
+        )
+      ],
+    );
+  }
 }
+
+
 
 class SeeMorePodcasts extends StatelessWidget {
   const SeeMorePodcasts({
@@ -297,86 +359,3 @@ class HomePageTagList extends StatelessWidget {
   }
 }
 
-class HomePagePoster extends StatelessWidget {
-  const HomePagePoster({
-    super.key,
-    required this.marginBody,
-    required this.size,
-    required this.themeData,
-  });
-
-  final double marginBody;
-  final Size size;
-  final TextTheme themeData;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: marginBody),
-          child: Container(
-            height: size.height / 4.2,
-            width: size.width / 1.20,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: Assets.img.posterTest.image().image),
-              gradient: const LinearGradient(
-                  begin: Alignment.bottomCenter,
-                  end: Alignment.topCenter,
-                  colors: GradientColors.homePosterGradient),
-            ),
-            foregroundDecoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              gradient: const LinearGradient(
-                  begin: Alignment.bottomCenter,
-                  end: Alignment.topCenter,
-                  colors: GradientColors.homePosterGradient),
-            ),
-          ),
-        ),
-        Positioned(
-          bottom: 8,
-          left: 0,
-          right: 0,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text(
-                    homePosterData["writer"] + " - " + homePosterData["date"],
-                    style: themeData.titleMedium,
-                  ),
-                  Row(
-                    children: [
-                      Text(homePosterData["view"],
-                          style: themeData.titleMedium),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      const Icon(
-                        Icons.remove_red_eye,
-                        color: Colors.white,
-                        size: 17,
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              Center(
-                child: Text(
-                  homePosterData["titile"],
-                  style: themeData.displayLarge,
-                ),
-              )
-            ],
-          ),
-        )
-      ],
-    );
-  }
-}

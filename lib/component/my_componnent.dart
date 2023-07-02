@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/models/fake_data.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -71,5 +72,18 @@ myLaunchUrl(String url) async {
     await launchUrl(uri);
   } else {
     print("cant find ${uri}");
+  }
+}
+class Loading extends StatelessWidget {
+  const Loading({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const SpinKitFadingCube(
+      color: SolidColor.pimaryColor,
+      size: 32,
+    );
   }
 }

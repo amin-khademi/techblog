@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
               displayLarge: TextStyle(
                   //? headline1
                   fontFamily: defaultTextStyle.fontFamily,
-                  fontSize: 16,
+                  fontSize: 14,
                   fontWeight: FontWeight.w700,
                   color: SolidColor.posterTitle),
               displayMedium: TextStyle(
