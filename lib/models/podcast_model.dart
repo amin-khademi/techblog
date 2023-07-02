@@ -1,11 +1,11 @@
+import 'package:techblog/component/api_constant.dart';
+
 class PodcastModel {
   String? id;
   String? title;
   String? poster;
   String? catName;
-
   String? view;
-
   String? createdAt;
 
   PodcastModel({
@@ -17,12 +17,12 @@ class PodcastModel {
     required this.createdAt,
   });
 
-  PodcastModel.fromjson(Map<String, dynamic> json) {
-    id = json['id'];
-    title = json['title'];
-    poster = json['poster'];
-    catName = json['cat_name'];
-    view = json['view'];
-    createdAt = json['created_at'];
+  PodcastModel.fromjson(Map<String, dynamic> element) {
+    id = element['id'];
+    title = element['title'];
+    poster =ApiConstant.hostDlUrl+ element['poster'];
+    catName = element['cat_name'];
+    view = element['view'];
+    createdAt = element['created_at'];
   }
 }

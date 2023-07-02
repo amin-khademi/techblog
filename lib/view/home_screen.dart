@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:techblog/component/my_colros.dart';
@@ -23,7 +25,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Column(
@@ -43,7 +44,7 @@ class HomeScreen extends StatelessWidget {
           topVisited(),
           SeeMorePodcasts(
               marginBody: marginBody, size: size, themeData: themeData),
-          HomePagePodcastsList(size: size, marginBody: marginBody),
+          topPodcasts(),
           const SizedBox(
             height: 60,
           )
@@ -52,11 +53,11 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget topVisited(){
+  Widget topVisited() {
     return SizedBox(
       height: size.height / 3.5,
       child: Obx(
-        ()=> ListView.builder(
+        () => ListView.builder(
           physics: const BouncingScrollPhysics(),
           itemCount: homeScreenComtroller.topVisited.length,
           scrollDirection: Axis.horizontal,
@@ -76,11 +77,13 @@ class HomeScreen extends StatelessWidget {
                               Radius.circular(16),
                             ),
                             image: DecorationImage(
-                                image: NetworkImage(homeScreenComtroller.topVisited[index].image!),
+                                image: NetworkImage(homeScreenComtroller
+                                    .topVisited[index].image!),
                                 fit: BoxFit.cover),
                           ),
                           foregroundDecoration: const BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(16)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(16)),
                               gradient: LinearGradient(
                                   end: Alignment.center,
                                   begin: Alignment.bottomCenter,
@@ -101,7 +104,9 @@ class HomeScreen extends StatelessWidget {
                                 children: [
                                   Row(
                                     children: [
-                                      Text(homeScreenComtroller.topVisited[index].view!,
+                                      Text(
+                                          homeScreenComtroller
+                                              .topVisited[index].view!,
                                           style: themeData.titleMedium),
                                       const SizedBox(
                                         width: 8,
@@ -139,64 +144,56 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-}
 
-class HomePagePodcastsList extends StatelessWidget {
-  const HomePagePodcastsList({
-    super.key,
-    required this.size,
-    required this.marginBody,
-  });
-
-  final Size size;
-  final double marginBody;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget topPodcasts() {
     return SizedBox(
       height: size.height / 3.5,
-      child: ListView.builder(
-        physics: const BouncingScrollPhysics(),
-        itemCount: blogList.getRange(0, 10).length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(right: index == 0 ? marginBody : 20),
-                child: SizedBox(
-                  height: size.height / 5.3,
-                  width: size.width / 2.2,
-                  child: Stack(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(16),
-                          ),
-                          image: DecorationImage(
-                              image: NetworkImage(blogList[index].imageUrl),
-                              fit: BoxFit.cover),
+      child: Obx(
+        () => ListView.builder(
+          physics: const BouncingScrollPhysics(),
+          itemCount: homeScreenComtroller.topPodcast.length,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: index == 0 ? marginBody : 20),
+                  child: SizedBox(
+                      height: size.height / 5.3,
+                      width: size.width / 2.2,
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            homeScreenComtroller.topVisited[index].image!,
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16),
+                              image: DecorationImage(
+                                  image: imageProvider, fit: BoxFit.cover)),
                         ),
-                        foregroundDecoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(16)),
+                        placeholder: (context, url) => const SpinKitFadingCube(
+                          color: SolidColor.pimaryColor,
+                          size: 32,
                         ),
-                      ),
-                    ],
-                  ),
+                        errorWidget: (context, url, error) => const Icon(
+                          Icons.image_not_supported,
+                          size: 50,
+                          color: Colors.grey,
+                        ),
+                      )),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(right: index == 0 ? marginBody : 15),
-                child: SizedBox(
-                    width: size.width / 2.2,
-                    child: Center(
-                      child: Text(blogList[index].date),
-                    )),
-              )
-            ],
-          );
-        },
+                Padding(
+                  padding: EdgeInsets.only(right: index == 0 ? marginBody : 15),
+                  child: SizedBox(
+                      width: size.width / 2.2,
+                      child: Center(
+                        child:
+                            Text(homeScreenComtroller.topPodcast[index].title!),
+                      )),
+                )
+              ],
+            );
+          },
+        ),
       ),
     );
   }
@@ -234,8 +231,6 @@ class SeeMorePodcasts extends StatelessWidget {
     );
   }
 }
-
-
 
 class SeeMoreBLogList extends StatelessWidget {
   const SeeMoreBLogList({
