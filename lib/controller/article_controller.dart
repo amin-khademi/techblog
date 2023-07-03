@@ -29,4 +29,5 @@ class ArticleController extends GetxController {
       loading.value = false;
     }
   }
+  
 }

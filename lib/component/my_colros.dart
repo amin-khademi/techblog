@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SolidColor {
-  static const Color profileText = Color.fromARGB(255, 70,70, 70);
+  static const Color profileText = Color.fromARGB(255, 70, 70, 70);
   static const Color posterSubTitle = Color.fromARGB(200, 255, 255, 255);
   static const Color posterTitle = Color.fromARGB(255, 255, 255, 255);
   static const Color pimaryColor = Color.fromARGB(255, 68, 4, 87);
@@ -41,6 +41,10 @@ class GradientColors {
   static const List<Color> homePosterGradient = [
     Color.fromARGB(220, 28, 20, 81),
     Color.fromARGB(170, 72, 20, 8),
+    Color.fromARGB(0, 0, 0, 0)
+  ];
+  static const List<Color> singleAppBarGradient = [
+    Color.fromARGB(255, 46, 3, 71),
     Color.fromARGB(0, 0, 0, 0)
   ];
 }

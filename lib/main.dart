@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:techblog/component/my_colros.dart';
 import 'package:techblog/view/article_list_screen.dart';
+import 'package:techblog/view/main-screen/main_screen.dart';
+import 'package:techblog/view/single.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
