@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:techblog/component/my_colros.dart';
 import 'package:techblog/view/article_list_screen.dart';
 import 'package:techblog/view/main-screen/main_screen.dart';
 import 'package:techblog/view/single.dart';
+import 'package:techblog/view/splash_screen.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -22,16 +24,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     var themeData = Theme.of(context).textTheme;
     const defaultTextStyle = TextStyle(fontFamily: "IranYekan");
-    return MaterialApp(
+    return GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        localizationsDelegates: const [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: const [
-          Locale('fa'), // farsi
-        ],
+        locale: const Locale("fa"),
         title: 'Flutter Demo',
         theme: ThemeData(
           inputDecorationTheme: InputDecorationTheme(border: OutlineInputBorder(
@@ -98,6 +93,6 @@ class MyApp extends StatelessWidget {
                   fontWeight: FontWeight.w300,
                   color: SolidColor.posterSubTitle)),
         ),
-        home:  ArticleListScreen());
+        home: SplashScreen());
   }
 }

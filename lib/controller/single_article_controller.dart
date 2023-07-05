@@ -3,18 +3,16 @@ import 'package:techblog/component/api_constant.dart';
 import 'package:techblog/models/article_model.dart';
 import 'package:techblog/services/dio_service.dart';
 
-class ArticleController extends GetxController {
-  RxList<ArticleModel> articleList = RxList();
-
+class SingleArticleController extends GetxController {
   RxBool loading = false.obs;
+  RxInt id = RxInt(0);
 
   @override
   onInit() {
     super.onInit();
-    getList();
   }
 
-  getList() async {
+  getArticleInfo() async {
     loading.value = true;
     //TODO get userid from getstorage + userid
 
@@ -23,11 +21,10 @@ class ArticleController extends GetxController {
     if (response.statusCode == 200) {
       loading.value = true;
       response.data.forEach((element) {
-        articleList.add(ArticleModel.fromjsom(element));
+       
       });
 
       loading.value = false;
     }
   }
-  
 }
