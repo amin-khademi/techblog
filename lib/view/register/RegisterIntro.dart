@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:get/get_instance/get_instance.dart';
 import 'package:techblog/component/my_colros.dart';
 import 'package:techblog/component/my_strings.dart';
+import 'package:techblog/controller/register_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/view/my_category.dart';
 
 class RegisterIntro extends StatelessWidget {
-  const RegisterIntro({super.key});
+  RegisterIntro({super.key});
+  RegisterController registerController = Get.put(RegisterController());
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +81,7 @@ class RegisterIntro extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(24, 24, 24, 24),
                     child: TextField(
+                      controller: registerController.emailEditingController,
                       onChanged: (value) {
                         // print(isEmail(value));
                       },
@@ -89,6 +94,7 @@ class RegisterIntro extends StatelessWidget {
                   ),
                   ElevatedButton(
                       onPressed: () {
+                        registerController.register();
                         Navigator.of(context).pop();
                         _showCodeBottomSheet(context, size, themeData);
                       },
@@ -130,6 +136,7 @@ class RegisterIntro extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(24, 24, 24, 24),
                     child: TextField(
+                      controller: registerController.activeEditingController,
                       onChanged: (value) {},
                       style: themeData.headlineSmall,
                       textAlign: TextAlign.center,

@@ -7,7 +7,7 @@ import 'package:techblog/component/my_strings.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/view/main-screen/home_screen.dart';
 import 'package:techblog/view/main-screen/profile_screen.dart';
-
+import 'package:techblog/view/register/RegisterIntro.dart';
 
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
@@ -18,9 +18,6 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
-    
     var size = MediaQuery.of(context).size;
     var themeData = Theme.of(context).textTheme;
     double marginBody = size.width / 10;
@@ -182,7 +179,11 @@ class BottomNavigation extends StatelessWidget {
                       onPressed: () => changeScreen(0),
                       icon: Assets.icon.icon.image(height: size.height / 28)),
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        //check login status
+
+                        Get.to( RegisterIntro());
+                      },
                       icon: Assets.icon.w.image(height: size.height / 28)),
                   IconButton(
                       onPressed: () => changeScreen(1),
