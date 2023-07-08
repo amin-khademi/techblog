@@ -30,11 +30,8 @@ class ArticleListScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    singleArticleController.id.value =
-                       int.parse(listArticleController.articleList[index].id.toString()) ;
-                    Get.to(
-                       Single(),
-                    );
+                    singleArticleController.getArticleInfo(
+                        listArticleController.articleList[index].id);
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -97,7 +94,8 @@ class ArticleListScreen extends StatelessWidget {
                                   width: 20,
                                 ),
                                 Text(
-                                  listArticleController.articleList[index].view! +
+                                  listArticleController
+                                          .articleList[index].view! +
                                       "بازدید",
                                   style: texTheme.caption,
                                 )

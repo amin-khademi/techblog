@@ -77,6 +77,7 @@ myLaunchUrl(String url) async {
     print("cant find ${uri}");
   }
 }
+
 class Loading extends StatelessWidget {
   const Loading({
     super.key,
@@ -91,8 +92,8 @@ class Loading extends StatelessWidget {
   }
 }
 
-  PreferredSize appBar(String titile) {
-    return PreferredSize(
+PreferredSize appBar(String titile) {
+  return PreferredSize(
     preferredSize: const Size.fromHeight(60),
     child: Padding(
       padding: const EdgeInsets.all(12),
@@ -111,17 +112,22 @@ class Loading extends StatelessWidget {
         ],
         leading: Padding(
           padding: const EdgeInsets.only(right: 16),
-          child: Container(
-            height: 40,
-            width: 40,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: SolidColor.pimaryColor.withBlue(100),
-            ),child:Icon(Icons.chevron_left_rounded) ,
+          child: GestureDetector(
+            onTap: () {
+              Get.back();
+            },
+            child: Container(
+              height: 40,
+              width: 40,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: SolidColor.pimaryColor.withBlue(100),
+              ),
+              child: Icon(Icons.chevron_left_rounded),
+            ),
           ),
         ),
       ),
     ),
   );
-  }
-
+}

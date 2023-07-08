@@ -4,6 +4,7 @@ import 'package:techblog/models/article_info_model.dart';
 import 'package:techblog/models/article_model.dart';
 import 'package:techblog/models/tags_model.dart';
 import 'package:techblog/services/dio_service.dart';
+import 'package:techblog/view/single.dart';
 
 class SingleArticleController extends GetxController {
   RxBool loading = false.obs;
@@ -18,7 +19,8 @@ class SingleArticleController extends GetxController {
     // getArticleInfo();
   }
 
-  getArticleInfo() async {
+  getArticleInfo(var id) async {
+    articleInfoModel = ArticleInfoModel().obs;
     loading.value = true;
     var userId = "";
     //TODO userid is hard code
@@ -31,7 +33,7 @@ class SingleArticleController extends GetxController {
       articleInfoModel.value = ArticleInfoModel.fromJson(response.data);
       loading.value = false;
     }
-     tagList.clear();
+    tagList.clear();
     response.data['tags'].forEach((element) {
       tagList.add(TagsModel.fromjson(element));
     });
@@ -40,5 +42,6 @@ class SingleArticleController extends GetxController {
     response.data['related'].forEach((element) {
       relatedList.add(ArticleModel.fromjson(element));
     });
+    Get.to(Single());
   }
 }

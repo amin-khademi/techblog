@@ -6,6 +6,7 @@ import 'package:techblog/component/my_colros.dart';
 import 'package:techblog/view/article_list_screen.dart';
 import 'package:techblog/view/main-screen/main_screen.dart';
 import 'package:techblog/view/single.dart';
+import 'package:techblog/view/splash_screen.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -92,6 +93,6 @@ class MyApp extends StatelessWidget {
                   fontWeight: FontWeight.w300,
                   color: SolidColor.posterSubTitle)),
         ),
-        home:  ArticleListScreen());
+        home:  SplashScreen());
   }
 }
