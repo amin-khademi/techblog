@@ -25,7 +25,7 @@ class HomeScreenController extends GetxController {
 
     if (response.statusCode == 200) {
       response.data["top_visited"].forEach((element) {
-        topVisited.add(ArticleModel.fromjsom(element));
+        topVisited.add(ArticleModel.fromjson(element));
       });
       response.data["top_podcasts"].forEach((element) {
         topPodcast.add(PodcastModel.fromjson(element));

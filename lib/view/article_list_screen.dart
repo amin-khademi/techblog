@@ -33,7 +33,7 @@ class ArticleListScreen extends StatelessWidget {
                     singleArticleController.id.value =
                        int.parse(listArticleController.articleList[index].id.toString()) ;
                     Get.to(
-                      const Single(),
+                       Single(),
                     );
                   },
                   child: Padding(

@@ -23,7 +23,7 @@ class ArticleModel {
       required this.status,
       //  this.isFavorite,
       required this.createdAt});
-  ArticleModel.fromjsom(Map<String, dynamic> element) {
+  ArticleModel.fromjson(Map<String, dynamic> element) {
     id = element["id"];
     title = element["title"];
     image = ApiConstant.hostDlUrl + element["image"];
