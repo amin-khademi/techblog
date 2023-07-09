@@ -9,8 +9,6 @@ import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/view/main-screen/home_screen.dart';
 import 'package:techblog/view/main-screen/profile_screen.dart';
 
-import 'package:techblog/view/register/register_intro.dart';
-
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
 // ignore: must_be_immutable
@@ -145,8 +143,7 @@ class BottomNavigation extends StatelessWidget {
   final Size size;
   final double marginBody;
   final Function(int) changeScreen;
-  RegisterController _registerController =
-      Get.put(RegisterController(), permanent: true);
+  
 
   @override
   Widget build(BuildContext context) {
@@ -186,7 +183,7 @@ class BottomNavigation extends StatelessWidget {
                   IconButton(
                       onPressed: () {
                         //check login status
-                        _registerController.toggleLogin();
+                        Get.find<RegisterController>().toggleLogin();
                         // Get.to(RegisterIntro());
                       },
                       icon: Assets.icon.w.image(height: size.height / 28)),

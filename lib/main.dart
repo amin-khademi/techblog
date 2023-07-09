@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:techblog/binding.dart';
 import 'package:techblog/component/my_colros.dart';
 import 'package:techblog/my_http_overrides.dart';
 import 'package:techblog/view/splash_screen.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
     var themeData = Theme.of(context).textTheme;
     const defaultTextStyle = TextStyle(fontFamily: "IranYekan");
     return GetMaterialApp(
+      initialBinding: RegisterBiniding(),
         debugShowCheckedModeBanner: false,
         locale: const Locale("fa"),
         title: 'Flutter Demo',

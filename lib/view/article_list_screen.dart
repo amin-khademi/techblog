@@ -94,9 +94,8 @@ class ArticleListScreen extends StatelessWidget {
                                   width: 20,
                                 ),
                                 Text(
-                                  listArticleController
-                                          .articleList[index].view! +
-                                      "بازدید",
+                                  "${listArticleController
+                                          .articleList[index].view!}بازدید",
                                   style: texTheme.bodySmall,
                                 )
                               ],

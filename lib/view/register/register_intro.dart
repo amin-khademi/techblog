@@ -10,8 +10,8 @@ import 'package:techblog/gen/assets.gen.dart';
 // ignore: must_be_immutable
 class RegisterIntro extends StatelessWidget {
   RegisterIntro({super.key});
-  RegisterController registerController = Get.put(RegisterController());
-
+  // RegisterController registerController = Get.put(RegisterController());
+  var registerController = Get.find<RegisterController>();
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
