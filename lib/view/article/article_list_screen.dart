@@ -21,7 +21,7 @@ class ArticleListScreen extends StatelessWidget {
         child: Scaffold(
       appBar: appBar("مقالات جدید"),
       body: Obx(
-        () => Padding(
+        () => !singleArticleController.loading.value? Padding(
           padding: const EdgeInsets.all(8.0),
           child: SizedBox(
             child: ListView.builder(
@@ -34,7 +34,7 @@ class ArticleListScreen extends StatelessWidget {
                     await singleArticleController.getArticleInfo(
                         listArticleController.articleList[index].id);
 
-                    Get.toNamed(routSingleArticle);
+                    Get.toNamed(NamedRout.routeSingleArticle);
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -111,7 +111,7 @@ class ArticleListScreen extends StatelessWidget {
               },
             ),
           ),
-        ),
+        ):const Loading()
       ),
     ));
   }

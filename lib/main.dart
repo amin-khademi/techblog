@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:techblog/binding.dart';
 import 'package:techblog/component/my_colros.dart';
 import 'package:techblog/my_http_overrides.dart';
+import 'package:techblog/view/article/mangeArticle.dart';
 import 'package:techblog/view/main-screen/main_screen.dart';
 import 'package:techblog/view/article/single.dart';
 import 'package:techblog/view/splash_screen.dart';
@@ -33,13 +34,17 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         getPages: [
           GetPage(
-              name: routeMainScreen,
+              name: NamedRout.routeMainScreen,
               page: () => MainScreen(),
               binding: RegisterBiniding()),
           GetPage(
-              name: routeMainScreen,
+              name:NamedRout.routeSingleArticle,
               page: () => Single(),
               binding: ArticleBiniding()),
+              GetPage(
+              name:NamedRout.routeManageArticle,
+              page: () => ManageArticle(),
+              binding: ArticleManagerBiniding()),
         ],
         locale: const Locale("fa"),
         title: 'Flutter Demo',
@@ -115,5 +120,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
-String routeMainScreen = "/MainScreen";
-String routSingleArticle = "/SingleArticle";
+class NamedRout {
+  static String routeMainScreen = "/MainScreen";
+  static String routeSingleArticle = "/SingleArticle";
+  static String routeManageArticle = "/ManageArticle";
+}

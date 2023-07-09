@@ -8,6 +8,7 @@ import 'package:techblog/component/api_constant.dart';
 import 'package:techblog/component/my_strings.dart';
 import 'package:techblog/component/storage_const.dart';
 import 'package:techblog/gen/assets.gen.dart';
+import 'package:techblog/main.dart';
 import 'package:techblog/services/dio_service.dart';
 import 'package:techblog/view/main-screen/main_screen.dart';
 import 'package:techblog/view/register/register_intro.dart';
@@ -45,11 +46,11 @@ class RegisterController extends GetxController {
     switch (status) {
       case 'verified':
         var box = GetStorage();
-        box.write(token, response.data["token"]);
-        box.write(userId, response.data["user_id"]);
+        box.write(StorageKey.token, response.data["token"]);
+        box.write(StorageKey.userId, response.data["user_id"]);
 
-        debugPrint("read: ${box.read(token)}");
-        debugPrint("read: ${box.read(userId)}");
+        debugPrint("read: ${box.read(StorageKey.token)}");
+        debugPrint("read: ${box.read(StorageKey.userId)}");
 
         Get.offAll(MainScreen());
         break;
@@ -63,7 +64,7 @@ class RegisterController extends GetxController {
   }
 
   toggleLogin() {
-    if (GetStorage().read(token) == null) {
+    if (GetStorage().read(StorageKey.token) == null) {
       Get.to(RegisterIntro());
     } else {
       debugPrint("post Screen");
@@ -107,8 +108,11 @@ class RegisterController extends GetxController {
                 GestureDetector(
                   onTap: () {
                     debugPrint("write article");
+                    Get.toNamed(NamedRout.routeManageArticle);
                   },
-                  child: Container(height: 50,color: Colors.white,
+                  child: Container(
+                    height: 50,
+                    color: Colors.white,
                     child: Row(
                       children: [
                         Assets.icon.writeArticleIcon.image(height: 32),
@@ -121,13 +125,12 @@ class RegisterController extends GetxController {
                   ),
                 ),
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     debugPrint("upload podcast");
                   },
                   child: Container(
                     height: 50,
                     color: Colors.white,
-                    
                     child: Row(
                       children: [
                         Assets.icon.writeMicrophone.image(height: 32),

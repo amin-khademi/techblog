@@ -228,6 +228,7 @@ flutter:
   assets:
     - assets/img/
     - assets/icon/
+    - assets/fonts/
 
   # pubspec.yaml
   

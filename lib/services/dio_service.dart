@@ -16,7 +16,7 @@ class DioService {
       },
     ).catchError((err) {
       if (err is DioError) {
-        return err.response!;
+        return err.response;
       }
     });
   }
@@ -37,7 +37,7 @@ class DioService {
       return response;
     }).catchError((err) {
       if (err is DioError) {
-        return err.response!;
+        return err.response;
       }
     });
   }
