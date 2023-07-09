@@ -133,7 +133,7 @@ class MainScreen extends StatelessWidget {
 }
 
 class BottomNavigation extends StatelessWidget {
-  BottomNavigation({
+  const BottomNavigation({
     super.key,
     required this.size,
     required this.marginBody,

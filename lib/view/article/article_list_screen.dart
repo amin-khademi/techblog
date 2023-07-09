@@ -1,12 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:techblog/binding.dart';
 import 'package:techblog/component/my_componnent.dart';
-import 'package:techblog/controller/list_article_controller.dart';
-import 'package:techblog/controller/single_article_controller.dart';
+import 'package:techblog/controller/article/list_article_controller.dart';
+import 'package:techblog/controller/article/single_article_controller.dart';
 import 'package:techblog/main.dart';
-import 'package:techblog/view/single.dart';
 
 // ignore: must_be_immutable
 class ArticleListScreen extends StatelessWidget {

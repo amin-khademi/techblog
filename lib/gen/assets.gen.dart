@@ -33,8 +33,26 @@ class $AssetsIconGen {
   /// File path: assets/icon/w.png
   AssetGenImage get w => const AssetGenImage('assets/icon/w.png');
 
+  /// File path: assets/icon/write_article_icon.png
+  AssetGenImage get writeArticleIcon =>
+      const AssetGenImage('assets/icon/write_article_icon.png');
+
+  /// File path: assets/icon/write_microphone.png
+  AssetGenImage get writeMicrophone =>
+      const AssetGenImage('assets/icon/write_microphone.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [downcat, hash, icon, micro, pen, user, w];
+  List<AssetGenImage> get values => [
+        downcat,
+        hash,
+        icon,
+        micro,
+        pen,
+        user,
+        w,
+        writeArticleIcon,
+        writeMicrophone
+      ];
 }
 
 class $AssetsImgGen {

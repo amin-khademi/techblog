@@ -6,10 +6,10 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:techblog/component/my_colros.dart';
 import 'package:techblog/component/my_componnent.dart';
-import 'package:techblog/controller/list_article_controller.dart';
-import 'package:techblog/controller/single_article_controller.dart';
+import 'package:techblog/controller/article/list_article_controller.dart';
+import 'package:techblog/controller/article/single_article_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
-import 'package:techblog/view/article_list_screen.dart';
+import 'package:techblog/view/article/article_list_screen.dart';
 
 // ignore: must_be_immutable
 class Single extends StatelessWidget {

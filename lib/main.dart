@@ -7,7 +7,7 @@ import 'package:techblog/binding.dart';
 import 'package:techblog/component/my_colros.dart';
 import 'package:techblog/my_http_overrides.dart';
 import 'package:techblog/view/main-screen/main_screen.dart';
-import 'package:techblog/view/single.dart';
+import 'package:techblog/view/article/single.dart';
 import 'package:techblog/view/splash_screen.dart';
 
 void main() async {
