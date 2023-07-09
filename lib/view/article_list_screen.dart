@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:techblog/component/my_componnent.dart';
 import 'package:techblog/controller/list_article_controller.dart';
 import 'package:techblog/controller/single_article_controller.dart';
-import 'package:techblog/view/single.dart';
 
+// ignore: must_be_immutable
 class ArticleListScreen extends StatelessWidget {
   ArticleListScreen({super.key});
   ListArticleController listArticleController =
@@ -89,7 +89,7 @@ class ArticleListScreen extends StatelessWidget {
                                 Text(
                                     listArticleController
                                         .articleList[index].author!,
-                                    style: texTheme.caption),
+                                    style: texTheme.bodySmall),
                                 const SizedBox(
                                   width: 20,
                                 ),
@@ -97,7 +97,7 @@ class ArticleListScreen extends StatelessWidget {
                                   listArticleController
                                           .articleList[index].view! +
                                       "بازدید",
-                                  style: texTheme.caption,
+                                  style: texTheme.bodySmall,
                                 )
                               ],
                             )

@@ -4,6 +4,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:techblog/component/my_colros.dart';
 import 'package:techblog/component/my_componnent.dart';
 import 'package:techblog/component/my_strings.dart';
+import 'package:techblog/controller/register_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/view/main-screen/home_screen.dart';
 import 'package:techblog/view/main-screen/profile_screen.dart';
@@ -12,6 +13,7 @@ import 'package:techblog/view/register/register_intro.dart';
 
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
+// ignore: must_be_immutable
 class MainScreen extends StatelessWidget {
   RxInt selectedPageIndex = 0.obs;
 
@@ -133,7 +135,7 @@ class MainScreen extends StatelessWidget {
 }
 
 class BottomNavigation extends StatelessWidget {
-  const BottomNavigation({
+  BottomNavigation({
     super.key,
     required this.size,
     required this.marginBody,
@@ -143,6 +145,8 @@ class BottomNavigation extends StatelessWidget {
   final Size size;
   final double marginBody;
   final Function(int) changeScreen;
+  RegisterController _registerController =
+      Get.put(RegisterController(), permanent: true);
 
   @override
   Widget build(BuildContext context) {
@@ -182,8 +186,8 @@ class BottomNavigation extends StatelessWidget {
                   IconButton(
                       onPressed: () {
                         //check login status
-
-                        Get.to( RegisterIntro());
+                        _registerController.toggleLogin();
+                        // Get.to(RegisterIntro());
                       },
                       icon: Assets.icon.w.image(height: size.height / 28)),
                   IconButton(

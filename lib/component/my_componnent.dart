@@ -1,12 +1,9 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:techblog/component/test_style.dart';
 import 'package:techblog/controller/home_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
-import 'package:techblog/models/fake_data.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'my_colros.dart';
@@ -74,7 +71,8 @@ myLaunchUrl(String url) async {
   if (await canLaunchUrl(uri)) {
     await launchUrl(uri);
   } else {
-    print("cant find ${uri}");
+    // ignore: unnecessary_brace_in_string_interps
+    debugPrint("cant find ${uri}");
   }
 }
 
@@ -123,7 +121,7 @@ PreferredSize appBar(String titile) {
                 shape: BoxShape.circle,
                 color: SolidColor.pimaryColor.withBlue(100),
               ),
-              child: Icon(Icons.chevron_left_rounded),
+              child: const Icon(Icons.chevron_left_rounded),
             ),
           ),
         ),

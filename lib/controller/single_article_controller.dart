@@ -13,6 +13,7 @@ class SingleArticleController extends GetxController {
   RxList<TagsModel> tagList = RxList();
   RxList<ArticleModel> relatedList = RxList();
 
+  // ignore: unnecessary_overrides
   @override
   onInit() {
     super.onInit();
@@ -26,8 +27,7 @@ class SingleArticleController extends GetxController {
     //TODO userid is hard code
     //TODO get userid from getstorage + userid
 
-    var response = await DioService().getMethod(ApiConstant.baseUrl +
-        "article/get.php?command=info&id=$id&user_id=$userId");
+    var response = await DioService().getMethod("${ApiConstant.baseUrl}article/get.php?command=info&id=$id&user_id=$userId");
 
     if (response.statusCode == 200) {
       articleInfoModel.value = ArticleInfoModel.fromJson(response.data);

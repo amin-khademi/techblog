@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -8,12 +7,13 @@ import 'package:techblog/component/api_constant.dart';
 import 'package:techblog/component/storage_const.dart';
 import 'package:techblog/services/dio_service.dart';
 import 'package:techblog/view/main-screen/main_screen.dart';
+import 'package:techblog/view/register/register_intro.dart';
 
 class RegisterController extends GetxController {
   TextEditingController emailEditingController = TextEditingController();
   TextEditingController activeEditingController = TextEditingController();
   var email = "";
-  var user_id = "";
+  var userId = "";
 
   register() async {
     Map<String, dynamic> map = {
@@ -22,33 +22,48 @@ class RegisterController extends GetxController {
     };
     var response = await DioService().postMethod(map, ApiConstant.postRegister);
     email = emailEditingController.text;
-    user_id = response.data["user_id"];
+    userId = response.data["user_id"];
 
-    print(response);
+    debugPrint(response);
   }
 
   verify() async {
     Map<String, dynamic> map = {
       "email": email,
-      "user_id": user_id,
+      "user_id": userId,
       "code": activeEditingController.text,
       "command": "verify"
     };
-    print(map);
+    debugPrint(map.toString());
     var response = await DioService().postMethod(map, ApiConstant.postRegister);
-    print(response.data);
+    debugPrint(response.data.toString());
+    var status = response.data["response"];
 
-    if (response.data["response"] == "verified") {
-      var box = GetStorage();
-      box.write(token, response.data["token"]);
-      box.write(user_id, response.data["user_id"]);
+    switch (status) {
+      case 'verified':
+        var box = GetStorage();
+        box.write(token, response.data["token"]);
+        box.write(userId, response.data["user_id"]);
 
-      print("read:" + box.read(token));
-      print("read:" + box.read(user_id));
+        debugPrint("read: ${box.read(token)}");
+        debugPrint("read: ${box.read(userId)}");
 
-      Get.to(MainScreen());
+        Get.offAll(MainScreen());
+        break;
+      case "incorrect_code":
+        Get.snackbar("خطا", "کد فعال سازی غلط است  ");
+        break;
+      case "expired":
+        Get.snackbar("خطا", "کد فعال سازی منقضی شده است.");
+        break;
+    }
+  }
+
+  toggleLogin() {
+    if (GetStorage().read(token) == null) {
+      Get.to(RegisterIntro());
     } else {
-      print("error");
+      debugPrint("post Screen");
     }
   }
 }

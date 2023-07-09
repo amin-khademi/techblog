@@ -11,9 +11,12 @@ import 'package:techblog/controller/single_article_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/view/article_list_screen.dart';
 
+// ignore: must_be_immutable
 class Single extends StatelessWidget {
   SingleArticleController singleArticleController =
       Get.put(SingleArticleController());
+
+  Single({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,7 @@ class Single extends StatelessWidget {
       body: Obx(
         () => singleArticleController.articleInfoModel.value.title == null
             ? const Center(child: Loading())
-            : SingleChildScrollView(physics: BouncingScrollPhysics(),
+            : SingleChildScrollView(physics: const BouncingScrollPhysics(),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -124,7 +127,7 @@ class Single extends StatelessWidget {
                         Text(
                           singleArticleController
                               .articleInfoModel.value.createdAt!,
-                          style: themeData.caption,
+                          style: themeData.bodySmall,
                         )
                       ],
                     ),

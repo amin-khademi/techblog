@@ -6,8 +6,8 @@ import 'package:techblog/component/my_colros.dart';
 import 'package:techblog/component/my_strings.dart';
 import 'package:techblog/controller/register_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
-import 'package:techblog/view/my_category.dart';
 
+// ignore: must_be_immutable
 class RegisterIntro extends StatelessWidget {
   RegisterIntro({super.key});
   RegisterController registerController = Get.put(RegisterController());
@@ -148,8 +148,6 @@ class RegisterIntro extends StatelessWidget {
                   ElevatedButton(
                       onPressed: () {
                         registerController.verify();
-                        
-                        
                       },
                       child: const Text("ادامه"))
                 ],

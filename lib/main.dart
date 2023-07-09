@@ -1,11 +1,14 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:techblog/component/my_colros.dart';
+import 'package:techblog/my_http_overrides.dart';
 import 'package:techblog/view/splash_screen.dart';
 
 void main() async {
+  HttpOverrides.global = MyHttpOverrides();
   await GetStorage.init();
 
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -91,6 +94,6 @@ class MyApp extends StatelessWidget {
                   fontWeight: FontWeight.w300,
                   color: SolidColor.posterSubTitle)),
         ),
-        home: SplashScreen());
+        home: const SplashScreen());
   }
 }

@@ -10,6 +10,7 @@ import 'package:techblog/controller/single_article_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/view/article_list_screen.dart';
 
+// ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
   HomeScreen({
     super.key,

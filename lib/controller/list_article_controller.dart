@@ -35,8 +35,7 @@ class ListArticleController extends GetxController {
     loading.value = true;
     //TODO get userid from getstorage + userid
 
-    var response = await DioService().getMethod(ApiConstant.baseUrl +
-        "article/get.php?command=get_articles_with_tag_id&tag_id=$id&user_id=");
+    var response = await DioService().getMethod("${ApiConstant.baseUrl}article/get.php?command=get_articles_with_tag_id&tag_id=$id&user_id=");
 
     if (response.statusCode == 200) {
       response.data.forEach((element) {

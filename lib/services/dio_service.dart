@@ -1,7 +1,6 @@
-import 'dart:math';
-
 import 'package:dio/dio.dart' as dio_service;
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 class DioService {
   Dio dio = Dio();
@@ -13,7 +12,7 @@ class DioService {
             options: Options(responseType: ResponseType.json, method: "GET"))
         .then(
       (response) {
-        print(response);
+        debugPrint(response.toString());
         return response;
       },
     );
@@ -28,9 +27,9 @@ class DioService {
             data:dio_service.FormData.fromMap(map), 
             options: Options(responseType: ResponseType.json, method: "POST"))
         .then((value) {
-      print(value.headers.toString());
-      print(value.data.toString());
-      print(value.statusCode.toString());
+      debugPrint(value.headers.toString());
+      debugPrint(value.data.toString());
+      debugPrint(value.statusCode.toString());
 
       return value;
     });
