@@ -1,4 +1,5 @@
-import 'package:techblog/component/api_constant.dart';
+
+import 'package:techblog/constant/api_constant.dart';
 
 class ArticleModel {
   String? id;
@@ -13,16 +14,16 @@ class ArticleModel {
   String? createdAt;
 
   ArticleModel(
-      {required this.id,
-      required this.title,
-      required this.image,
-      required this.catId,
-      required this.catName,
-      required this.author,
-      required this.view,
-      required this.status,
+      { this.id,
+       this.title,
+       this.image,
+       this.catId,
+       this.catName,
+       this.author,
+       this.view,
+       this.status,
       //  this.isFavorite,
-      required this.createdAt});
+       this.createdAt});
   ArticleModel.fromjson(Map<String, dynamic> element) {
     id = element["id"];
     title = element["title"];

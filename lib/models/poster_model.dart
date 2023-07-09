@@ -1,4 +1,6 @@
-import 'package:techblog/component/api_constant.dart';
+
+
+import 'package:techblog/constant/api_constant.dart';
 
 class PosterModel {
   String? id;

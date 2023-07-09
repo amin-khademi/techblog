@@ -4,8 +4,9 @@ import 'package:get/get_core/get_core.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:techblog/component/my_colros.dart';
+
 import 'package:techblog/component/my_componnent.dart';
+import 'package:techblog/constant/my_colros.dart';
 import 'package:techblog/controller/article/list_article_controller.dart';
 import 'package:techblog/controller/article/single_article_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';

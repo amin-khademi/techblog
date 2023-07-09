@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+
 import 'package:techblog/component/test_style.dart';
 import 'package:techblog/controller/home_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
+import 'package:techblog/view/article/article_list_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'my_colros.dart';
+import '../constant/my_colros.dart';
 
 class TechDivider extends StatelessWidget {
   const TechDivider({
@@ -128,4 +130,44 @@ PreferredSize appBar(String titile) {
       ),
     ),
   );
+}
+
+class SeeMoreBLogList extends StatelessWidget {
+  const SeeMoreBLogList({
+    super.key,
+    required this.marginBody,
+    required this.size,
+    required this.themeData,
+    required this.title,
+  });
+
+  final double marginBody;
+  final Size size;
+  final TextTheme themeData;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Get.to(ArticleListScreen());
+      },
+      child: Padding(
+        padding: EdgeInsets.only(right: marginBody, top: 16, bottom: 10),
+        child: Row(
+          children: [
+            Assets.icon.pen
+                .image(height: size.height / 37, color: SolidColor.seeMore),
+            const SizedBox(
+              width: 10,
+            ),
+            Text(
+              title,
+              style: themeData.displaySmall,
+            )
+          ],
+        ),
+      ),
+    );
+  }
 }

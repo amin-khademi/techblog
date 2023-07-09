@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-import 'package:techblog/component/api_constant.dart';
+import 'package:techblog/constant/api_constant.dart';
+
 import 'package:techblog/models/article_info_model.dart';
 import 'package:techblog/models/article_model.dart';
 import 'package:techblog/models/tags_model.dart';
@@ -9,7 +10,7 @@ import 'package:techblog/view/article/single.dart';
 class SingleArticleController extends GetxController {
   RxBool loading = false.obs;
   RxInt id = RxInt(0);
-  Rx<ArticleInfoModel> articleInfoModel = ArticleInfoModel().obs;
+  Rx<ArticleInfoModel> articleInfoModel = ArticleInfoModel(null,null,null).obs;
   RxList<TagsModel> tagList = RxList();
   RxList<ArticleModel> relatedList = RxList();
 
@@ -21,7 +22,7 @@ class SingleArticleController extends GetxController {
   }
 
   getArticleInfo(var id) async {
-    articleInfoModel = ArticleInfoModel().obs;
+    articleInfoModel = ArticleInfoModel(null,null,null).obs;
     loading.value = true;
     var userId = "";
     //TODO userid is hard code

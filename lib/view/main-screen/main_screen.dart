@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:techblog/component/my_colros.dart';
+import 'package:techblog/component/dimens.dart';
+
 import 'package:techblog/component/my_componnent.dart';
-import 'package:techblog/component/my_strings.dart';
+
+import 'package:techblog/constant/my_colros.dart';
+import 'package:techblog/constant/my_strings.dart';
 import 'package:techblog/controller/register_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/view/main-screen/home_screen.dart';
@@ -19,9 +22,8 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     var themeData = Theme.of(context).textTheme;
-    double marginBody = size.width / 10;
+    var size = MediaQuery.of(context).size;
 
     return SafeArea(
       child: Scaffold(
@@ -29,7 +31,8 @@ class MainScreen extends StatelessWidget {
         drawer: Drawer(
           backgroundColor: SolidColor.scafoldBg,
           child: Padding(
-            padding: EdgeInsets.only(left: marginBody, right: marginBody),
+            padding: EdgeInsets.only(
+                left: Dimens.marginBody, right: Dimens.marginBody),
             child: ListView(
               children: [
                 DrawerHeader(child: Assets.img.a1.image(scale: 3)),
@@ -84,7 +87,7 @@ class MainScreen extends StatelessWidget {
           backgroundColor: SolidColor.scafoldBg,
           elevation: 0,
           title: Padding(
-            padding: EdgeInsets.symmetric(horizontal: marginBody - 10),
+            padding: EdgeInsets.symmetric(horizontal: Dimens.marginBody - 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -113,7 +116,7 @@ class MainScreen extends StatelessWidget {
                       index: selectedPageIndex.value,
                       children: [
                         HomeScreen(
-                            marginBody: marginBody,
+                            marginBody: Dimens.marginBody,
                             size: size,
                             themeData: themeData),
                         const ProfileScreen(),
@@ -124,7 +127,7 @@ class MainScreen extends StatelessWidget {
                   selectedPageIndex.value = value;
                 },
                 size: size,
-                marginBody: marginBody),
+                marginBody: Dimens.marginBody),
           ],
         ),
       ),
@@ -143,7 +146,6 @@ class BottomNavigation extends StatelessWidget {
   final Size size;
   final double marginBody;
   final Function(int) changeScreen;
-  
 
   @override
   Widget build(BuildContext context) {

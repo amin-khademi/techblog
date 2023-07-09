@@ -10,14 +10,15 @@ class ArticleBiniding implements Bindings {
   void dependencies() {
     // TODO: implement dependencies
     Get.put(ListArticleController());
-    Get.lazyPut(() => SingleArticleController);
+    Get.lazyPut(() => SingleArticleController());
   }
 }
 class ArticleManagerBiniding implements Bindings {
   @override
   void dependencies() {
     // TODO: implement dependencies
-    Get.put(MangeArticleController());
+    // Get.put(MangeArticleController());
+    Get.lazyPut(() => MangeArticleController());
     
   }
 }

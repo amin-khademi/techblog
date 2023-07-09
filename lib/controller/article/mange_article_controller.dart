@@ -1,12 +1,22 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:techblog/constant/api_constant.dart';
+import 'package:techblog/constant/my_strings.dart';
+import 'package:techblog/models/article_info_model.dart';
 import 'package:techblog/models/article_model.dart';
 import 'package:techblog/services/dio_service.dart';
 
-import '../../component/api_constant.dart';
+
 
 class MangeArticleController extends GetxController {
   RxList<ArticleModel> articleList = RxList.empty();
+  RxList<ArticleModel> tagList = RxList.empty();
   RxBool loading = false.obs;
+  Rx<ArticleInfoModel> articleInfoModel = ArticleInfoModel(
+    MyStrings.titltArrticle,
+    MyStrings.editOrginalTextArticle,
+     ""
+  ).obs;
 
   @override
   onInit() {

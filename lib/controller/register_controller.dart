@@ -4,9 +4,10 @@ import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:techblog/component/api_constant.dart';
-import 'package:techblog/component/my_strings.dart';
-import 'package:techblog/component/storage_const.dart';
+import 'package:techblog/constant/api_constant.dart';
+import 'package:techblog/constant/my_strings.dart';
+
+import 'package:techblog/constant/storage_const.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/main.dart';
 import 'package:techblog/services/dio_service.dart';

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:techblog/component/my_colros.dart';
+
+
+import '../constant/my_colros.dart';
 
 TextStyle appBarTextStyle = const TextStyle(
   fontFamily: "IranYekan",

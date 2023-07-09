@@ -2,13 +2,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:techblog/component/my_colros.dart';
+
 import 'package:techblog/component/my_componnent.dart';
-import 'package:techblog/component/my_strings.dart';
-import 'package:techblog/controller/home_screen_controller.dart';
+import 'package:techblog/constant/my_strings.dart';
+
 import 'package:techblog/controller/article/single_article_controller.dart';
+import 'package:techblog/controller/home_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/view/article/article_list_screen.dart';
+
+import '../../constant/my_colros.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
@@ -44,7 +47,7 @@ class HomeScreen extends StatelessWidget {
                     SeeMoreBLogList(
                         marginBody: marginBody,
                         size: size,
-                        themeData: themeData),
+                        themeData: themeData, title: MyStrings.viewHotestBlog,),
                     topVisited(),
                     SeeMorePodcasts(
                         marginBody: marginBody,
@@ -323,40 +326,4 @@ class SeeMorePodcasts extends StatelessWidget {
   }
 }
 
-class SeeMoreBLogList extends StatelessWidget {
-  const SeeMoreBLogList({
-    super.key,
-    required this.marginBody,
-    required this.size,
-    required this.themeData,
-  });
 
-  final double marginBody;
-  final Size size;
-  final TextTheme themeData;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Get.to(ArticleListScreen());
-      },
-      child: Padding(
-        padding: EdgeInsets.only(right: marginBody, top: 16, bottom: 10),
-        child: Row(
-          children: [
-            Assets.icon.pen
-                .image(height: size.height / 37, color: SolidColor.seeMore),
-            const SizedBox(
-              width: 10,
-            ),
-            Text(
-              MyStrings.viewHotestBlog,
-              style: themeData.displaySmall,
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}

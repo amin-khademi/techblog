@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:get/get_instance/get_instance.dart';
-import 'package:techblog/component/my_colros.dart';
-import 'package:techblog/component/my_strings.dart';
+import 'package:techblog/constant/my_colros.dart';
+import 'package:techblog/constant/my_strings.dart';
+
 import 'package:techblog/controller/register_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
 
