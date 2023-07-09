@@ -148,10 +148,8 @@ class RegisterIntro extends StatelessWidget {
                   ElevatedButton(
                       onPressed: () {
                         registerController.verify();
-                        // Navigator.of(context).pop();
-                        // Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        //   builder: (context) => const MyCategory(),
-                        // ));
+                        
+                        
                       },
                       child: const Text("ادامه"))
                 ],

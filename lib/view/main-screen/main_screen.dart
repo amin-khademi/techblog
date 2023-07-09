@@ -7,7 +7,8 @@ import 'package:techblog/component/my_strings.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/view/main-screen/home_screen.dart';
 import 'package:techblog/view/main-screen/profile_screen.dart';
-import 'package:techblog/view/register/RegisterIntro.dart';
+
+import 'package:techblog/view/register/register_intro.dart';
 
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 

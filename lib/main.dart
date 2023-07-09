@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:techblog/component/my_colros.dart';
 import 'package:techblog/view/splash_screen.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init();
+
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: SolidColor.statusColor,
       statusBarIconBrightness: Brightness.dark,
@@ -25,11 +28,10 @@ class MyApp extends StatelessWidget {
         locale: const Locale("fa"),
         title: 'Flutter Demo',
         theme: ThemeData(
-          inputDecorationTheme: InputDecorationTheme(border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16),
-            borderSide: const BorderSide(width: 2)
-          ),
-          
+          inputDecorationTheme: InputDecorationTheme(
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+                borderSide: const BorderSide(width: 2)),
           ),
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ButtonStyle(
@@ -89,6 +91,6 @@ class MyApp extends StatelessWidget {
                   fontWeight: FontWeight.w300,
                   color: SolidColor.posterSubTitle)),
         ),
-        home:  SplashScreen());
+        home: SplashScreen());
   }
 }
