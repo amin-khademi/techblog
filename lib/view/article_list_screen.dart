@@ -1,9 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:techblog/binding.dart';
 import 'package:techblog/component/my_componnent.dart';
 import 'package:techblog/controller/list_article_controller.dart';
 import 'package:techblog/controller/single_article_controller.dart';
+import 'package:techblog/main.dart';
+import 'package:techblog/view/single.dart';
 
 // ignore: must_be_immutable
 class ArticleListScreen extends StatelessWidget {
@@ -29,9 +32,11 @@ class ArticleListScreen extends StatelessWidget {
               itemCount: listArticleController.articleList.length,
               itemBuilder: (context, index) {
                 return GestureDetector(
-                  onTap: () {
-                    singleArticleController.getArticleInfo(
+                  onTap: () async {
+                    await singleArticleController.getArticleInfo(
                         listArticleController.articleList[index].id);
+
+                    Get.toNamed(routSingleArticle);
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -94,8 +99,7 @@ class ArticleListScreen extends StatelessWidget {
                                   width: 20,
                                 ),
                                 Text(
-                                  "${listArticleController
-                                          .articleList[index].view!}بازدید",
+                                  "${listArticleController.articleList[index].view!}بازدید",
                                   style: texTheme.bodySmall,
                                 )
                               ],

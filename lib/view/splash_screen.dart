@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:techblog/component/my_colros.dart';
 import 'package:techblog/gen/assets.gen.dart';
-import 'package:techblog/view/main-screen/main_screen.dart';
-
+import 'package:techblog/main.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -17,8 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 1)).then((value) {
-      Navigator.of(context)
-          .pushReplacement(CupertinoPageRoute(builder: (context) =>  MainScreen(),));
+      Get.offAndToNamed(routeMainScreen);
     });
     super.initState();
   }
@@ -30,7 +29,6 @@ class _SplashScreenState extends State<SplashScreen> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            
             Center(child: Assets.img.a1.image(height: 64)),
             const SizedBox(
               height: 30,

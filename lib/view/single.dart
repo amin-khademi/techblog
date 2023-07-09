@@ -13,8 +13,7 @@ import 'package:techblog/view/article_list_screen.dart';
 
 // ignore: must_be_immutable
 class Single extends StatelessWidget {
-  SingleArticleController singleArticleController =
-      Get.put(SingleArticleController());
+  var singleArticleController = Get.find<SingleArticleController>();
 
   Single({super.key});
 
@@ -29,7 +28,8 @@ class Single extends StatelessWidget {
       body: Obx(
         () => singleArticleController.articleInfoModel.value.title == null
             ? const Center(child: Loading())
-            : SingleChildScrollView(physics: const BouncingScrollPhysics(),
+            : SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -138,7 +138,7 @@ class Single extends StatelessWidget {
                       singleArticleController.articleInfoModel.value.content!,
                       style: themeData.headlineSmall,
                     ),
-                    tags(size,marginBody),
+                    tags(size, marginBody),
                     const SizedBox(
                       height: 20,
                     ),
@@ -224,7 +224,8 @@ class Single extends StatelessWidget {
               Get.to(ArticleListScreen());
             },
             child: Padding(
-                padding: EdgeInsets.fromLTRB(0, 8, index == 0 ? marginBody : 15, 0),
+                padding:
+                    EdgeInsets.fromLTRB(0, 8, index == 0 ? marginBody : 15, 0),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(35),
