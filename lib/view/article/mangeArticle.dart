@@ -46,7 +46,7 @@ class ManageArticle extends StatelessWidget {
           ),
         ),
         body: Obx(() => articleManagecontroller.loading.value
-            ? Loading()
+            ? const Loading()
             : articleManagecontroller.articleList.isNotEmpty
                 ? Padding(
                     padding: const EdgeInsets.all(8.0),

@@ -2,15 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-
 import 'package:techblog/component/my_componnent.dart';
 import 'package:techblog/constant/my_strings.dart';
-
 import 'package:techblog/controller/article/single_article_controller.dart';
 import 'package:techblog/controller/home_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/view/article/article_list_screen.dart';
-
 import '../../constant/my_colros.dart';
 
 // ignore: must_be_immutable
@@ -44,10 +41,17 @@ class HomeScreen extends StatelessWidget {
                       height: 16,
                     ),
                     tags(),
-                    SeeMoreBLogList(
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(ArticleListScreen());
+                      },
+                      child: SeeMoreBLogList(
                         marginBody: marginBody,
                         size: size,
-                        themeData: themeData, title: MyStrings.viewHotestBlog,),
+                        themeData: themeData,
+                        title: MyStrings.viewHotestBlog,
+                      ),
+                    ),
                     topVisited(),
                     SeeMorePodcasts(
                         marginBody: marginBody,
@@ -325,5 +329,3 @@ class SeeMorePodcasts extends StatelessWidget {
     );
   }
 }
-
-

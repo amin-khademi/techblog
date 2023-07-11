@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:techblog/binding.dart';
 import 'package:techblog/constant/my_colros.dart';
 import 'package:techblog/my_http_overrides.dart';
+import 'package:techblog/view/article/article_content_editor.dart';
 import 'package:techblog/view/article/mangeArticle.dart';
 import 'package:techblog/view/article/single_manage_article.dart';
 import 'package:techblog/view/main-screen/main_screen.dart';
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
         locale: const Locale("fa"),
         title: 'Flutter Demo',
         theme: lightTheme(themeData, defaultTextStyle),
-        home: const SplashScreen());
+        home:  SplashScreen());
   }
 
   ThemeData lightTheme(TextTheme themeData, TextStyle defaultTextStyle) {
