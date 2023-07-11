@@ -19,7 +19,7 @@ class ListArticleController extends GetxController {
     loading.value = true;
     //TODO get userid from getstorage + userid
 
-    var response = await DioService().getMethod(ApiConstant.getArticleList);
+    var response = await DioService().getMethod(ApiUrlconstant.getArticleList);
 
     if (response.statusCode == 200) {
       loading.value = true;
@@ -36,7 +36,8 @@ class ListArticleController extends GetxController {
     loading.value = true;
     //TODO get userid from getstorage + userid
 
-    var response = await DioService().getMethod("${ApiConstant.baseUrl}article/get.php?command=get_articles_with_tag_id&tag_id=$id&user_id=");
+    var response = await DioService().getMethod(
+        "${ApiUrlconstant.baseUrl}article/get.php?command=get_articles_with_tag_id&tag_id=$id&user_id=");
 
     if (response.statusCode == 200) {
       response.data.forEach((element) {

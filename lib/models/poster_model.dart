@@ -1,5 +1,3 @@
-
-
 import 'package:techblog/constant/api_constant.dart';
 
 class PosterModel {
@@ -8,13 +6,13 @@ class PosterModel {
   String? image;
 
   PosterModel({
-     this.id,
-     this.title,
-     this.image,
+    this.id,
+    this.title,
+    this.image,
   });
   PosterModel.fromjsom(Map<String, dynamic> element) {
     id = element["id"];
     title = element["title"];
-    image = ApiConstant.hostDlUrl+element["image"];
+    image = ApiUrlconstant.hostDlUrl + element["image"];
   }
 }

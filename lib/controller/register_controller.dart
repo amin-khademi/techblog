@@ -25,7 +25,8 @@ class RegisterController extends GetxController {
       "email": emailEditingController.text,
       "command": "register",
     };
-    var response = await DioService().postMethod(map, ApiConstant.postRegister);
+    var response =
+        await DioService().postMethod(map, ApiUrlconstant.postRegister);
     email = emailEditingController.text;
     userId = response.data["user_id"];
 
@@ -40,7 +41,8 @@ class RegisterController extends GetxController {
       "command": "verify"
     };
     debugPrint(map.toString());
-    var response = await DioService().postMethod(map, ApiConstant.postRegister);
+    var response =
+        await DioService().postMethod(map, ApiUrlconstant.postRegister);
     debugPrint(response.data.toString());
     var status = response.data["response"];
 

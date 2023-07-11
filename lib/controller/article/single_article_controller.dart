@@ -9,7 +9,8 @@ import 'package:techblog/view/article/single.dart';
 class SingleArticleController extends GetxController {
   RxBool loading = false.obs;
   RxInt id = RxInt(0);
-  Rx<ArticleInfoModel> articleInfoModel = ArticleInfoModel(null,null,null).obs;
+  Rx<ArticleInfoModel> articleInfoModel =
+      ArticleInfoModel(null, null, null).obs;
   RxList<TagsModel> tagList = RxList();
   RxList<ArticleModel> relatedList = RxList();
 
@@ -21,13 +22,14 @@ class SingleArticleController extends GetxController {
   }
 
   getArticleInfo(var id) async {
-    articleInfoModel = ArticleInfoModel(null,null,null).obs;
+    articleInfoModel = ArticleInfoModel(null, null, null).obs;
     loading.value = true;
     var userId = "";
     //TODO userid is hard code
     //TODO get userid from getstorage + userid
 
-    var response = await DioService().getMethod("${ApiConstant.baseUrl}article/get.php?command=info&id=$id&user_id=$userId");
+    var response = await DioService().getMethod(
+        "${ApiUrlconstant.baseUrl}article/get.php?command=info&id=$id&user_id=$userId");
 
     if (response.statusCode == 200) {
       articleInfoModel.value = ArticleInfoModel.fromJson(response.data);
@@ -38,7 +40,7 @@ class SingleArticleController extends GetxController {
       tagList.add(TagsModel.fromjson(element));
     });
 
-    relatedList.clear();
+    // relatedList.clear();
     response.data['related'].forEach((element) {
       relatedList.add(ArticleModel.fromjson(element));
     });

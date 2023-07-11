@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart' as dio_service;
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:techblog/constant/storage_const.dart';
 
 class DioService {
   Dio dio = Dio();
@@ -23,6 +25,11 @@ class DioService {
 
   Future<dynamic> postMethod(Map<String, dynamic> map, String url) async {
     dio.options.headers["content-Type"] = "application/json";
+    var token = GetStorage().read(StorageKey.token);
+    if(
+      token != null 
+    ){dio.options.headers["authorization"] = "$token" ;}
+
     //TODO read token from storage
 
     return await dio
