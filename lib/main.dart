@@ -11,6 +11,7 @@ import 'package:techblog/view/article/mangeArticle.dart';
 import 'package:techblog/view/article/single_manage_article.dart';
 import 'package:techblog/view/main-screen/main_screen.dart';
 import 'package:techblog/view/article/single.dart';
+import 'package:techblog/view/podcast/single_poscast.dart';
 import 'package:techblog/view/splash_screen.dart';
 
 void main() async {
@@ -33,29 +34,31 @@ class MyApp extends StatelessWidget {
     var themeData = Theme.of(context).textTheme;
     const defaultTextStyle = TextStyle(fontFamily: "IranYekan");
     return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        getPages: [
-          GetPage(
-              name: NamedRout.routeMainScreen,
-              page: () => MainScreen(),
-              binding: RegisterBiniding()),
-          GetPage(
-              name: NamedRout.routeSingleArticle,
-              page: () => Single(),
-              binding: ArticleBiniding()),
-          GetPage(
-              name: NamedRout.routeManageArticle,
-              page: () => ManageArticle(),
-              binding: ArticleManagerBiniding()),
-          GetPage(
-              name: NamedRout.routeSingleManageArticle,
-              page: () => SingleManageArticle(),
-              binding: ArticleManagerBiniding()),
-        ],
-        locale: const Locale("fa"),
-        title: 'Flutter Demo',
-        theme: lightTheme(themeData, defaultTextStyle),
-        home:  SplashScreen());
+      debugShowCheckedModeBanner: false,
+      getPages: [
+        GetPage(
+            name: NamedRout.routeMainScreen,
+            page: () => MainScreen(),
+            binding: RegisterBiniding()),
+        GetPage(
+            name: NamedRout.routeSingleArticle,
+            page: () => Single(),
+            binding: ArticleBiniding()),
+        GetPage(
+            name: NamedRout.routeManageArticle,
+            page: () => ManageArticle(),
+            binding: ArticleManagerBiniding()),
+        GetPage(
+            name: NamedRout.routeSingleManageArticle,
+            page: () => SingleManageArticle(),
+            binding: ArticleManagerBiniding()),
+      ],
+      locale: const Locale("fa"),
+      title: 'Flutter Demo',
+      theme: lightTheme(themeData, defaultTextStyle),
+      // home: SplashScreen(),
+      home: SinglePodcast(),
+    );
   }
 
   ThemeData lightTheme(TextTheme themeData, TextStyle defaultTextStyle) {

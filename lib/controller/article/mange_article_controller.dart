@@ -39,7 +39,7 @@ class MangeArticleController extends GetxController {
       response.data.forEach((element) {
         articleList.add(ArticleModel.fromjson(element));
       });
-      articleList.clear();
+      // articleList.clear();
       loading.value = false;
     }
   }

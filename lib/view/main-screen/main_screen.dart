@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:techblog/component/decorations.dart';
 import 'package:techblog/component/dimens.dart';
 
 import 'package:techblog/component/my_componnent.dart';
@@ -172,10 +173,7 @@ class BottomNavigation extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: marginBody),
             child: Container(
               height: size.height / 10,
-              decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(18)),
-                  gradient:
-                      LinearGradient(colors: GradientColors.bottomNavigation)),
+              decoration: MyDecoration.maingradient,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
