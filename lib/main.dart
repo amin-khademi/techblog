@@ -6,7 +6,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:techblog/binding.dart';
 import 'package:techblog/constant/my_colros.dart';
 import 'package:techblog/my_http_overrides.dart';
-import 'package:techblog/view/article/article_content_editor.dart';
 import 'package:techblog/view/article/mangeArticle.dart';
 import 'package:techblog/view/article/single_manage_article.dart';
 import 'package:techblog/view/main-screen/main_screen.dart';
@@ -52,12 +51,16 @@ class MyApp extends StatelessWidget {
             name: NamedRout.routeSingleManageArticle,
             page: () => SingleManageArticle(),
             binding: ArticleManagerBiniding()),
+        GetPage(
+          name: NamedRout.routeSinglePodcast,
+          page: () => SinglePodcast(),
+        ),
       ],
       locale: const Locale("fa"),
       title: 'Flutter Demo',
       theme: lightTheme(themeData, defaultTextStyle),
-      // home: SplashScreen(),
-      home: SinglePodcast(),
+      home: const SplashScreen(),
+      // home: SinglePodcast(),
     );
   }
 
@@ -130,8 +133,10 @@ class MyApp extends StatelessWidget {
 }
 
 class NamedRout {
+  NamedRout._();
   static String routeMainScreen = "/MainScreen";
   static String routeSingleArticle = "/SingleArticle";
   static String routeManageArticle = "/ManageArticle";
   static String routeSingleManageArticle = "/SingleManageArticle";
+  static String routeSinglePodcast = "/SinglePodcast";
 }

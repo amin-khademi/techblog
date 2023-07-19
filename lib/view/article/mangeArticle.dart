@@ -5,11 +5,9 @@ import 'package:get/get_core/get_core.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-
 import 'package:techblog/component/my_componnent.dart';
 import 'package:techblog/constant/my_colros.dart';
 import 'package:techblog/constant/my_strings.dart';
-
 import 'package:techblog/controller/article/mange_article_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/main.dart';
@@ -21,7 +19,6 @@ class ManageArticle extends StatelessWidget {
   var articleManagecontroller = Get.find<MangeArticleController>();
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     var themeData = Theme.of(context).textTheme;
 
     return SafeArea(

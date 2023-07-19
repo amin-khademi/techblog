@@ -7,6 +7,7 @@ class PodcastModel {
   String? catName;
   String? view;
   String? createdAt;
+  String? author;
 
   PodcastModel({
     required this.id,
@@ -21,7 +22,7 @@ class PodcastModel {
     id = element['id'];
     title = element['title'];
     poster = ApiUrlconstant.hostDlUrl + element['poster'];
-    catName = element['cat_name'];
+    author = element["author"];
     view = element['view'];
     createdAt = element['created_at'];
   }

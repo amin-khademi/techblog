@@ -10,14 +10,13 @@ import 'package:techblog/component/dimens.dart';
 import 'package:techblog/component/my_componnent.dart';
 import 'package:techblog/constant/my_colros.dart';
 import 'package:techblog/constant/my_strings.dart';
-import 'package:techblog/controller/article/list_article_controller.dart';
 import 'package:techblog/controller/article/mange_article_controller.dart';
 import 'package:techblog/controller/file_controller.dart';
 import 'package:techblog/controller/home_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/services/pick_file.dart';
 import 'package:techblog/view/article/article_content_editor.dart';
-import 'package:techblog/view/article/article_list_screen.dart';
+
 
 // ignore: must_be_immutable
 class SingleManageArticle extends StatelessWidget {
@@ -33,10 +32,10 @@ class SingleManageArticle extends StatelessWidget {
         content: TextField(
           controller: manageArticleController.titeletextEditingController,
           keyboardType: TextInputType.text,
-          style: TextStyle(
+          style: const TextStyle(
             color: SolidColor.titile,
           ),
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             hintText: "اینجا بنویس",
           ),
         ),
@@ -54,7 +53,7 @@ class SingleManageArticle extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     var textheme = Theme.of(context).textTheme;
-    double marginBody = size.width / 10;
+
 
     // var id=Get.arguments[0];
     var themeData = Theme.of(context).textTheme;
@@ -302,8 +301,8 @@ class SingleManageArticle extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                Text("انتخاب دسته بندی"),
-                SizedBox(
+                const Text("انتخاب دسته بندی"),
+                const SizedBox(
                   height: 8,
                 ),
                 cats()

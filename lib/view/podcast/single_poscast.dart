@@ -1,16 +1,22 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/get.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:techblog/component/decorations.dart';
 import 'package:techblog/component/dimens.dart';
+import 'package:techblog/controller/podcast/single_poscast_controller.dart';
+import 'package:techblog/models/podcast_model.dart';
 import '../../component/my_componnent.dart';
 import '../../constant/my_colros.dart';
 import '../../gen/assets.gen.dart';
 
 class SinglePodcast extends StatelessWidget {
-  const SinglePodcast({super.key});
-
+  late SinglePodcastController controller;
+  late PodcastModel podcastModel;
+  SinglePodcast({super.key}) {
+    podcastModel = Get.arguments;
+    controller = Get.put(SinglePodcastController(id: podcastModel.id));
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -28,14 +34,19 @@ class SinglePodcast extends StatelessWidget {
               children: [
                 Stack(
                   children: [
-                    CachedNetworkImage(
-                      imageUrl:
-                          "https://techblog.sasansafari.com/Techblog/assets/upload/images/article/20220904181457.jpg",
-                      imageBuilder: (context, imageProvider) =>
-                          Image(image: imageProvider),
-                      placeholder: (context, url) => const Loading(),
-                      errorWidget: (context, url, error) =>
-                          Image.asset(Assets.img.singlePlaceHolder.path),
+                    SizedBox(
+                      height: Get.height / 2.2,
+                      width: double.infinity,
+                      child: CachedNetworkImage(
+                        imageUrl: podcastModel.poster!,
+                        imageBuilder: (context, imageProvider) => Image(
+                          image: imageProvider,
+                          fit: BoxFit.fill,
+                        ),
+                        placeholder: (context, url) => const Loading(),
+                        errorWidget: (context, url, error) =>
+                            Image.asset(Assets.img.singlePlaceHolder.path),
+                      ),
                     ),
                     Positioned(
                       top: 0,
@@ -85,7 +96,7 @@ class SinglePodcast extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: Text(
-                      "عنوان پادکست",
+                      podcastModel.title!,
                       style: Theme.of(context)
                           .textTheme
                           .bodyLarge!
@@ -104,7 +115,7 @@ class SinglePodcast extends StatelessWidget {
                       const SizedBox(
                         width: 20,
                       ),
-                      Text("امین خادمی",
+                      Text(podcastModel.author!,
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge!
@@ -117,34 +128,40 @@ class SinglePodcast extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: 4,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                ImageIcon(
-                                  Image.asset(Assets.icon.micro.path).image,
-                                  color: SolidColor.seeMore,
-                                ),
-                                const SizedBox(
-                                  width: 8,
-                                ),
-                                const Text(
-                                  "بخش چهارم : فریلنسر دیونه",
-                                ),
-                              ],
-                            ),
-                            Text("22:00")
-                          ],
-                        ),
-                      );
-                    },
+                  child: Obx(
+                    () => ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: controller.podcastFileList.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  ImageIcon(
+                                    Image.asset(Assets.icon.micro.path).image,
+                                    color: SolidColor.seeMore,
+                                  ),
+                                  const SizedBox(
+                                    width: 8,
+                                  ),
+                                  SizedBox(
+                                    width: Get.width / 1.5,
+                                    child: Text(
+                                      controller.podcastFileList[index].title!,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                  "${controller.podcastFileList[index].length!}:00")
+                            ],
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 )
               ],
@@ -152,13 +169,63 @@ class SinglePodcast extends StatelessWidget {
           ),
         ),
         Positioned(
-            bottom: 8,
-            right: Dimens.marginBody,
-            left: Dimens.marginBody,
-            child: Container(
-              height: Get.height / 10,
-              decoration: MyDecoration.maingradient,
-            ))
+          bottom: 8,
+          right: Dimens.marginBody,
+          left: Dimens.marginBody,
+          child: Container(
+            height: Get.height / 8,
+            decoration: MyDecoration.maingradient,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  LinearPercentIndicator(
+                    percent: 1.0,
+                    backgroundColor: Colors.white,
+                    progressColor: Colors.orange,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      const Icon(
+                        Icons.skip_next,
+                        color: Colors.white,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          controller.playState.value =
+                              controller.player.playing;
+
+                          controller.player.playing
+                              ? controller.player.pause()
+                              : controller.player.play();
+                        },
+                        child:  Icon(
+                          controller.player.playing
+                              ?Icons.pause_circle_filled
+                              : Icons.play_circle
+                          ,
+                          color: Colors.white,
+                          size: 48,
+                        ),
+                      ),
+                      const Icon(
+                        Icons.skip_previous,
+                        color: Colors.white,
+                      ),
+                      const SizedBox(),
+                      const Icon(
+                        Icons.repeat_outlined,
+                        color: Colors.white,
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
       ],
     )));
   }

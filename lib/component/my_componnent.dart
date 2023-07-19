@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-
 import 'package:techblog/component/test_style.dart';
 import 'package:techblog/controller/home_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
-import 'package:techblog/view/article/article_list_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../constant/my_colros.dart';

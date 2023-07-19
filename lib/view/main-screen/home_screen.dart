@@ -7,6 +7,7 @@ import 'package:techblog/constant/my_strings.dart';
 import 'package:techblog/controller/article/single_article_controller.dart';
 import 'package:techblog/controller/home_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
+import 'package:techblog/main.dart';
 import 'package:techblog/view/article/article_list_screen.dart';
 import '../../constant/my_colros.dart';
 
@@ -178,39 +179,49 @@ class HomeScreen extends StatelessWidget {
           itemCount: homeScreenComtroller.topPodcast.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
-            return Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(right: index == 0 ? marginBody : 20),
-                  child: SizedBox(
-                      height: size.height / 5.3,
-                      width: size.width / 2.2,
-                      child: CachedNetworkImage(
-                        imageUrl: homeScreenComtroller.topVisited[index].image!,
-                        imageBuilder: (context, imageProvider) => Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                              image: DecorationImage(
-                                  image: imageProvider, fit: BoxFit.cover)),
-                        ),
-                        placeholder: (context, url) => const Loading(),
-                        errorWidget: (context, url, error) => const Icon(
-                          Icons.image_not_supported,
-                          size: 50,
-                          color: Colors.grey,
-                        ),
-                      )),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(right: index == 0 ? marginBody : 15),
-                  child: SizedBox(
-                      width: size.width / 2.2,
-                      child: Center(
-                        child:
-                            Text(homeScreenComtroller.topPodcast[index].title!),
-                      )),
-                )
-              ],
+            return GestureDetector(
+              onTap: () {
+                Get.toNamed(
+                  NamedRout.routeSinglePodcast,
+                arguments: homeScreenComtroller.topPodcast[index]);
+              },
+              child: Column(
+                children: [
+                  Padding(
+                    padding:
+                        EdgeInsets.only(right: index == 0 ? marginBody : 20),
+                    child: SizedBox(
+                        height: size.height / 5.3,
+                        width: size.width / 2.2,
+                        child: CachedNetworkImage(
+                          imageUrl:
+                              homeScreenComtroller.topPodcast[index].poster!,
+                          imageBuilder: (context, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16),
+                                image: DecorationImage(
+                                    image: imageProvider, fit: BoxFit.cover)),
+                          ),
+                          placeholder: (context, url) => const Loading(),
+                          errorWidget: (context, url, error) => const Icon(
+                            Icons.image_not_supported,
+                            size: 50,
+                            color: Colors.grey,
+                          ),
+                        )),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(right: index == 0 ? marginBody : 15),
+                    child: SizedBox(
+                        width: size.width / 2.2,
+                        child: Center(
+                          child: Text(
+                              homeScreenComtroller.topPodcast[index].title!),
+                        )),
+                  )
+                ],
+              ),
             );
           },
         ),
