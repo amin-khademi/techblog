@@ -3,20 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:techblog/binding.dart';
 import 'package:techblog/constant/my_colros.dart';
 import 'package:techblog/my_http_overrides.dart';
-import 'package:techblog/view/article/mangeArticle.dart';
-import 'package:techblog/view/article/single_manage_article.dart';
-import 'package:techblog/view/main-screen/main_screen.dart';
-import 'package:techblog/view/article/single.dart';
-import 'package:techblog/view/podcast/single_poscast.dart';
-import 'package:techblog/view/splash_screen.dart';
+import 'package:techblog/rout_manager/names.dart';
+import 'package:techblog/rout_manager/page.dart';
 
 void main() async {
   HttpOverrides.global = MyHttpOverrides();
   await GetStorage.init();
-
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: SolidColor.statusColor,
       statusBarIconBrightness: Brightness.dark,
@@ -33,34 +27,12 @@ class MyApp extends StatelessWidget {
     var themeData = Theme.of(context).textTheme;
     const defaultTextStyle = TextStyle(fontFamily: "IranYekan");
     return GetMaterialApp(
+      initialRoute: NamedRout.initialRoute,
       debugShowCheckedModeBanner: false,
-      getPages: [
-        GetPage(
-            name: NamedRout.routeMainScreen,
-            page: () => MainScreen(),
-            binding: RegisterBiniding()),
-        GetPage(
-            name: NamedRout.routeSingleArticle,
-            page: () => Single(),
-            binding: ArticleBiniding()),
-        GetPage(
-            name: NamedRout.routeManageArticle,
-            page: () => ManageArticle(),
-            binding: ArticleManagerBiniding()),
-        GetPage(
-            name: NamedRout.routeSingleManageArticle,
-            page: () => SingleManageArticle(),
-            binding: ArticleManagerBiniding()),
-        GetPage(
-          name: NamedRout.routeSinglePodcast,
-          page: () => SinglePodcast(),
-        ),
-      ],
+      getPages: Pages.pages,
       locale: const Locale("fa"),
       title: 'Flutter Demo',
       theme: lightTheme(themeData, defaultTextStyle),
-      home: const SplashScreen(),
-      // home: SinglePodcast(),
     );
   }
 
@@ -130,13 +102,4 @@ class MyApp extends StatelessWidget {
               color: SolidColor.posterSubTitle)),
     );
   }
-}
-
-class NamedRout {
-  NamedRout._();
-  static String routeMainScreen = "/MainScreen";
-  static String routeSingleArticle = "/SingleArticle";
-  static String routeManageArticle = "/ManageArticle";
-  static String routeSingleManageArticle = "/SingleManageArticle";
-  static String routeSinglePodcast = "/SinglePodcast";
 }

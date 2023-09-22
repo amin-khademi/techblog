@@ -50,9 +50,11 @@ class SinglePodcastController extends GetxController {
   startProgress() {
     const tick = Duration(seconds: 1);
     int duration = player.duration!.inSeconds - player.position.inSeconds;
-    if (timer != null && timer!.isActive) {
-      timer!.cancel();
-      timer = null;
+    if (timer != null) {
+      if (timer!.isActive) {
+        timer!.cancel();
+        timer = null;
+      }
     }
     Timer.periodic(tick, (timer) {
       duration--;
@@ -64,6 +66,16 @@ class SinglePodcastController extends GetxController {
         bufferValue.value = const Duration(seconds: 0);
       }
     });
+  }
+
+  timerCheck() {
+    if (player.playing) {
+      startProgress();
+    } else {
+      timer!.cancel();
+      progressValue.value = const Duration(seconds: 0);
+      bufferValue.value = const Duration(seconds: 0);
+    }
   }
 
   setLoopmode() {

@@ -6,6 +6,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:techblog/constant/my_colros.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/main.dart';
+import 'package:techblog/rout_manager/names.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
