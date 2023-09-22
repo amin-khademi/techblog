@@ -1,6 +1,10 @@
+import 'dart:async';
+
+import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:techblog/component/decorations.dart';
 import 'package:techblog/component/dimens.dart';
@@ -195,17 +199,28 @@ class SinglePodcast extends StatelessWidget {
           right: Dimens.marginBody,
           left: Dimens.marginBody,
           child: Container(
-            height: Get.height / 8,
+            height: Get.height / 6,
             decoration: MyDecoration.maingradient,
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  LinearPercentIndicator(
-                    percent: 1,
-                    backgroundColor: Colors.white,
-                    progressColor: Colors.orange,
+                  Obx(
+                    () => ProgressBar(
+                      baseBarColor: Colors.white,
+                      thumbColor: Colors.redAccent,
+                      progressBarColor: Colors.redAccent,
+                      progress: controller.progressValue.value,
+                      buffered: controller.bufferValue.value,
+                      total: controller.player.duration ?? Duration(seconds: 0),
+                      onSeek: (duration) {
+                        controller.player.seek(duration);
+                        controller.player.playing
+                            ? controller.startProgress()
+                            : controller.timer!.cancel();
+                      },
+                    ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -222,19 +237,24 @@ class SinglePodcast extends StatelessWidget {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () {
+                        onTap: () async {
                           controller.player.playing
                               ? controller.player.pause()
                               : controller.player.play();
-                          
+
+                          controller.player.playing
+                              ? controller.timer!.cancel()
+                              : controller.startProgress();
+
                           controller.playState.value =
-                              controller.player.playing;
+                              !controller.playState.value;
+                              
                           controller.currentFileIndex.value =
                               controller.player.currentIndex!;
                         },
                         child: Obx(
                           () => Icon(
-                            controller.playState.value
+                            controller.playState.value 
                                 ? Icons.pause_circle_filled
                                 : Icons.play_circle,
                             color: Colors.white,
@@ -254,9 +274,18 @@ class SinglePodcast extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(),
-                      const Icon(
-                        Icons.repeat_outlined,
-                        color: Colors.white,
+                      Obx(
+                        () => GestureDetector(
+                          onTap: () {
+                            controller.setLoopmode();
+                          },
+                          child: Icon(
+                            Icons.repeat_outlined,
+                            color: controller.isLoopAll.value
+                                ? Colors.blue
+                                : Colors.white,
+                          ),
+                        ),
                       )
                     ],
                   )
