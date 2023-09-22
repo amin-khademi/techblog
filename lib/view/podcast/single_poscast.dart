@@ -13,6 +13,7 @@ import '../../gen/assets.gen.dart';
 class SinglePodcast extends StatelessWidget {
   late SinglePodcastController controller;
   late PodcastModel podcastModel;
+
   SinglePodcast({super.key}) {
     podcastModel = Get.arguments;
     controller = Get.put(SinglePodcastController(id: podcastModel.id));
@@ -133,31 +134,52 @@ class SinglePodcast extends StatelessWidget {
                       shrinkWrap: true,
                       itemCount: controller.podcastFileList.length,
                       itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  ImageIcon(
-                                    Image.asset(Assets.icon.micro.path).image,
-                                    color: SolidColor.seeMore,
-                                  ),
-                                  const SizedBox(
-                                    width: 8,
-                                  ),
-                                  SizedBox(
-                                    width: Get.width / 1.5,
-                                    child: Text(
-                                      controller.podcastFileList[index].title!,
+                        return GestureDetector(
+                          onTap: () async {
+                            await controller.player
+                                .seek(Duration.zero, index: index);
+                            controller.currentFileIndex.value =
+                                controller.player.currentIndex!;
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    ImageIcon(
+                                      Image.asset(Assets.icon.micro.path).image,
+                                      color: SolidColor.seeMore,
                                     ),
-                                  ),
-                                ],
-                              ),
-                              Text(
-                                  "${controller.podcastFileList[index].length!}:00")
-                            ],
+                                    const SizedBox(
+                                      width: 8,
+                                    ),
+                                    SizedBox(
+                                      width: Get.width / 1.5,
+                                      child: Obx(
+                                        () => Text(
+                                          controller
+                                              .podcastFileList[index].title!,
+                                          style:
+                                              controller.currentFileIndex
+                                                          .value ==
+                                                      index
+                                                  ? Theme.of(context)
+                                                      .textTheme
+                                                      .headline3
+                                                  : Theme.of(context)
+                                                      .textTheme
+                                                      .headline4,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Text(
+                                    "${controller.podcastFileList[index].length!}:00")
+                              ],
+                            ),
                           ),
                         );
                       },
@@ -181,38 +203,55 @@ class SinglePodcast extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   LinearPercentIndicator(
-                    percent: 1.0,
+                    percent: 1,
                     backgroundColor: Colors.white,
                     progressColor: Colors.orange,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      const Icon(
-                        Icons.skip_next,
-                        color: Colors.white,
+                      GestureDetector(
+                        onTap: () async {
+                          await controller.player.seekToNext();
+                          controller.currentFileIndex.value =
+                              controller.player.currentIndex!;
+                        },
+                        child: const Icon(
+                          Icons.skip_next,
+                          color: Colors.white,
+                        ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          controller.playState.value =
-                              controller.player.playing;
-
                           controller.player.playing
                               ? controller.player.pause()
                               : controller.player.play();
+                          
+                          controller.playState.value =
+                              controller.player.playing;
+                          controller.currentFileIndex.value =
+                              controller.player.currentIndex!;
                         },
-                        child:  Icon(
-                          controller.player.playing
-                              ?Icons.pause_circle_filled
-                              : Icons.play_circle
-                          ,
-                          color: Colors.white,
-                          size: 48,
+                        child: Obx(
+                          () => Icon(
+                            controller.playState.value
+                                ? Icons.pause_circle_filled
+                                : Icons.play_circle,
+                            color: Colors.white,
+                            size: 48,
+                          ),
                         ),
                       ),
-                      const Icon(
-                        Icons.skip_previous,
-                        color: Colors.white,
+                      GestureDetector(
+                        onTap: () async {
+                          await controller.player.seekToPrevious();
+                          controller.currentFileIndex.value =
+                              controller.player.currentIndex!;
+                        },
+                        child: const Icon(
+                          Icons.skip_previous,
+                          color: Colors.white,
+                        ),
                       ),
                       const SizedBox(),
                       const Icon(

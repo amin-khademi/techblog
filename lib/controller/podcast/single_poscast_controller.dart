@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:techblog/constant/api_constant.dart';
@@ -13,6 +15,8 @@ class SinglePodcastController extends GetxController {
   final player = AudioPlayer();
   late var playList;
   RxBool playState = false.obs;
+  RxInt currentFileIndex = 0.obs;
+  Timer? timer;
 
   @override
   onInit() async {
@@ -39,4 +43,6 @@ class SinglePodcastController extends GetxController {
       loading.value = false;
     }
   }
+
+  
 }

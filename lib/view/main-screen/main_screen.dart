@@ -3,9 +3,7 @@ import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:techblog/component/decorations.dart';
 import 'package:techblog/component/dimens.dart';
-
 import 'package:techblog/component/my_componnent.dart';
-
 import 'package:techblog/constant/my_colros.dart';
 import 'package:techblog/constant/my_strings.dart';
 import 'package:techblog/controller/register_controller.dart';
