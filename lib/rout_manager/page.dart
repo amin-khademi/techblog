@@ -1,6 +1,5 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:techblog/rout_manager/binding.dart';
-import 'package:techblog/main.dart';
 import 'package:techblog/rout_manager/names.dart';
 import 'package:techblog/view/article/mangeArticle.dart';
 import 'package:techblog/view/article/single.dart';

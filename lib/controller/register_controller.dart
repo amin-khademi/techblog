@@ -6,10 +6,8 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:techblog/constant/api_constant.dart';
 import 'package:techblog/constant/my_strings.dart';
-
 import 'package:techblog/constant/storage_const.dart';
 import 'package:techblog/gen/assets.gen.dart';
-import 'package:techblog/main.dart';
 import 'package:techblog/rout_manager/names.dart';
 import 'package:techblog/services/dio_service.dart';
 import 'package:techblog/view/main-screen/main_screen.dart';

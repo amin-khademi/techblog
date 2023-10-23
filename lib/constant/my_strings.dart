@@ -24,7 +24,7 @@ class MyStrings {
 
 من از تکبلاگ استفاده میکنم ، خیلی باحاله ، تو هم داشته باش\n
 
-www.sasansafari.com
+
 
 """;
   static const String podcastEmpty = """  
